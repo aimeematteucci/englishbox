@@ -1,0 +1,17 @@
+# Saídas de transcrição
+*.srt
+*.txt
+!README.txt
+
+# Áudios
+*.m4a
+*.mp3
+*.wav
+*.ogg
+*.flac
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
