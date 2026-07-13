@@ -1,7 +1,8 @@
 # Saídas de transcrição
 *.srt
 *.txt
-!README.txt
+# ...menos arquivos do projeto:
+!requirements.txt
 
 # Áudios
 *.m4a
