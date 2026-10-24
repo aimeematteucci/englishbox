@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Can or Know?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Inter+Tight:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Oswald:wght@300;400&display=swap">
+<style>
+/* Layout: a student worksheet on paper — green brand band on top, then a single reading column of numbered lesson steps; concordance lines set in a typewriter face like a real concordancer. */
+:root{
+  --paper:#EDECE8; --surface:#F8F7F3; --ink:#1E1E1E; --muted:#56605A; --line:rgba(30,30,30,.16);
+  --band:#56886A; --band-ink:#F4EFE4; --accent:#2F6B47;
+  --key-bg:#C6F135; --key-ink:#1E1E1E;
+  --can-bg:#C6F135; --know-bg:#E8C832; --how-bg:#A9CDB3; --chip-ink:#1E1E1E;
+  --ok:#2F6B47; --ok-bg:rgba(47,107,71,.12); --bad:#A8384A; --bad-bg:rgba(199,80,94,.13);
+  --f-display:"Fraunces",Georgia,serif; --f-body:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Courier Prime","Courier New",monospace; --f-kicker:"Oswald","Arial Narrow",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#161D19; --surface:#1F2823; --ink:#ECE8DE; --muted:#A7B2AB; --line:rgba(236,232,222,.16);
+  --band:#2F5A40; --band-ink:#F4EFE4; --accent:#9FD3AE;
+  --ok:#9FD3AE; --ok-bg:rgba(159,211,174,.13); --bad:#F0909C; --bad-bg:rgba(240,144,156,.13); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#161D19; --surface:#1F2823; --ink:#ECE8DE; --muted:#A7B2AB; --line:rgba(236,232,222,.16);
+  --band:#2F5A40; --band-ink:#F4EFE4; --accent:#9FD3AE;
+  --ok:#9FD3AE; --ok-bg:rgba(159,211,174,.13); --bad:#F0909C; --bad-bg:rgba(240,144,156,.13); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;margin:0}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* band */
+.band{background:var(--band);color:var(--band-ink)}
+.band .wrap{padding-block:28px 40px;display:grid;gap:22px}
+.corner{font-size:14px;line-height:1.15;display:flex;justify-content:space-between}
+.corner b{font-weight:700}
+.band h1{font-size:clamp(44px,9vw,84px);letter-spacing:-.02em}
+.band h1 i{font-style:italic}
+.band .lede{max-width:56ch;font-size:18px;opacity:.92}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--f-kicker);font-weight:300;text-transform:uppercase;letter-spacing:.1em;font-size:14px}
+
+main .wrap{display:grid;gap:56px;padding-block:44px 80px}
+section{display:grid;gap:18px}
+.kicker{font-family:var(--f-kicker);font-weight:400;text-transform:uppercase;letter-spacing:.12em;font-size:14px;color:var(--accent);display:flex;gap:10px;align-items:baseline}
+.kicker .time{color:var(--muted);font-weight:300}
+section h2{font-size:clamp(30px,5vw,42px)}
+.task{max-width:62ch}
+.task b{font-weight:600}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+
+/* option buttons */
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:9px 18px;font-weight:600}
+.opt:hover{background:var(--ok-bg)}
+.opt.right{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{font-size:15.5px;padding:12px 14px;border-radius:10px;border-left:4px solid var(--ok);background:var(--ok-bg)}
+.fb.no{border-left-color:var(--bad);background:var(--bad-bg)}
+.say{font-family:var(--f-display);font-size:26px}
+.say i{color:var(--accent)}
+
+/* concordancer */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.toolbar .lbl{font-family:var(--f-kicker);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-right:4px}
+.tb{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 12px;font-size:14px}
+.tb[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.conc-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.conc{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);min-width:640px;font-family:var(--f-mono);font-size:15.5px}
+.conc .row{display:contents}
+.conc .n,.conc .l,.conc .k,.conc .r{padding:7px 0;border-bottom:1px solid var(--line)}
+.conc .l{text-align:right;padding-right:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl}
+.conc .l span{direction:ltr;unicode-bidi:plaintext}
+.conc .k{text-align:center}
+.conc .k mark{background:var(--key-bg);color:var(--key-ink);font-weight:700;padding:1px 6px;border-radius:4px}
+.conc .r{padding-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conc .r .nx{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.conc .row:last-child>div{border-bottom:0}
+.hint{font-size:14px;color:var(--muted)}
+
+/* notice questions */
+.q{display:grid;gap:10px;padding-block:14px;border-top:1px solid var(--line)}
+.q:first-child{border-top:0;padding-top:0}
+.q .qt{font-weight:600}
+
+/* classify */
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.legend div{border-radius:12px;padding:12px 14px;color:var(--chip-ink);font-size:15px}
+.legend b{display:block;font-family:var(--f-display);font-size:20px;font-weight:600}
+.c-can{background:var(--can-bg)} .c-know{background:var(--know-bg)} .c-how{background:var(--how-bg)}
+.cards{display:grid;gap:10px}
+.card{display:grid;gap:10px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.card .s{font-family:var(--f-mono);font-size:16px}
+.card .s mark{background:none;color:inherit;font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.card.done{border-color:var(--ok)}
+.chip{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+.chip.right{color:var(--chip-ink);border-color:transparent}
+.chip.wrong{color:var(--bad);border-color:var(--bad);background:var(--bad-bg)}
+.score{font-family:var(--f-kicker);letter-spacing:.08em;text-transform:uppercase;font-size:14px;color:var(--muted)}
+.score b{color:var(--accent);font-weight:400}
+
+/* rule box */
+.rule{display:grid;gap:14px}
+.rule .line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:18px}
+.rule select{font:inherit;font-weight:600;border:1.5px solid var(--ink);border-radius:8px;padding:4px 8px;background:var(--paper);color:var(--ink)}
+.rule select.right{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.rule select.wrong{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.formula div{border-radius:12px;padding:16px;color:var(--chip-ink)}
+.formula .f{font-family:var(--f-mono);font-weight:700;font-size:17px}
+.formula .ex{font-size:15px;margin-top:6px}
+.formula .pt{font-size:13.5px;margin-top:6px;opacity:.8}
+.never{font-family:var(--f-mono);font-size:16px;color:var(--bad)}
+.never s{text-decoration-thickness:2px}
+
+/* dialogues */
+.dlg{display:grid;gap:12px}
+.dlg h3{font-size:24px}
+.dlg .ctx{color:var(--muted);font-size:15px;font-style:italic}
+.turn{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:baseline}
+.turn .who{font-family:var(--f-kicker);text-transform:uppercase;letter-spacing:.08em;font-size:14px;color:var(--accent)}
+.prose{line-height:2.1}
+.gap{font:inherit;font-weight:600;border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);padding:0 4px;border-radius:0}
+.gap.right{border-color:var(--ok);color:var(--ok);background:var(--ok-bg)}
+.gap.wrong{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.row-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:0;background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 20px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+
+/* errors */
+.err{display:grid;gap:10px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.err .s{font-family:var(--f-mono);font-size:17px}
+
+/* skell */
+.steps{display:grid;gap:14px;margin:0;padding-left:22px}
+.steps li{padding-left:4px}
+.steps code{font-family:var(--f-mono);background:var(--key-bg);color:var(--key-ink);padding:1px 6px;border-radius:4px;font-weight:700}
+.skell-link{display:inline-flex;align-items:center;gap:8px;background:var(--band);color:var(--band-ink);text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px;width:fit-content}
+textarea{width:100%;min-height:96px;font:inherit;font-family:var(--f-mono);font-size:15.5px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper);color:var(--ink);resize:vertical}
+label.tl{font-weight:600;font-size:15px}
+.field{display:grid;gap:6px}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display:grid;gap:6px}
+
+@media (max-width:520px){
+  body{font-size:16px}
+  .turn{grid-template-columns:1fr;gap:2px}
+  .panel{padding:16px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .fb{animation:in .25s ease-out}
+  @keyframes in{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="corner"><span>@aimee.<i>matteucci</i><br><b>English Box</b></span><span style="text-align:right">Data-Driven<br><b>Learning</b></span></div>
+    <h1>Can <i>or</i> know?</h1>
+    <p class="lede">Real English, real examples. Look at the data, find the pattern, and discover the rule by yourself.</p>
+    <div class="meta"><span>Level A2</span><span>About 50 minutes</span><span>6 steps</span></div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <!-- STEP 0 -->
+  <section id="start">
+    <div class="kicker">Before you start <span class="time">2 min</span></div>
+    <h2>How do you say it in English?</h2>
+    <p class="say">“Eu <i>sei</i> nadar.”</p>
+    <p class="task">Choose your answer. Don't worry if you are not sure. You will check it at the end.</p>
+    <div class="opts" id="warm"></div>
+    <p class="hint" id="warm-note" hidden>Saved. Keep going.</p>
+  </section>
+
+  <!-- STEP 1 -->
+  <section id="notice">
+    <div class="kicker">Step 1 · Look at the data <span class="time">10 min</span></div>
+    <h2>Concordance lines</h2>
+    <p class="task">These lines come from patterns in real English texts. The <b>key word</b> is in the middle. Look at the words <b>after</b> the key word. Use the buttons to sort the lines.</p>
+    <div class="toolbar" role="group" aria-label="Concordance options">
+      <span class="lbl">Show</span>
+      <button class="tb" data-f="can" aria-pressed="true">can</button>
+      <button class="tb" data-f="know" aria-pressed="false">know</button>
+      <button class="tb" data-f="all" aria-pressed="false">both</button>
+      <span class="lbl" style="margin-left:10px">Sort by</span>
+      <button class="tb" data-s="orig" aria-pressed="true">original</button>
+      <button class="tb" data-s="next" aria-pressed="false">next word</button>
+      <button class="tb" data-s="prev" aria-pressed="false">word before</button>
+    </div>
+    <div class="conc-scroll"><div class="conc" id="conc"></div></div>
+    <p class="hint">The first word after the key word is underlined. On a phone, slide the table to read the full lines.</p>
+
+    <div class="panel" id="noticeqs"></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section id="classify">
+    <div class="kicker">Step 2 · Sort the lines <span class="time">8 min</span></div>
+    <h2>Three groups</h2>
+    <p class="task">Read each sentence. What does it talk about? Tap a group.</p>
+    <div class="legend">
+      <div class="c-can"><b>Ability</b>can / can't + verb</div>
+      <div class="c-know"><b>Information</b>know + a fact, a person, a place</div>
+      <div class="c-how"><b>Learned steps</b>know how to + verb</div>
+    </div>
+    <p class="score" id="cl-score"></p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section id="rule">
+    <div class="kicker">Step 3 · Make the rule <span class="time">5 min</span></div>
+    <h2>Your rule</h2>
+    <p class="task">Use what you saw in Steps 1 and 2. Complete the rule.</p>
+    <div class="panel rule" id="rulebox"></div>
+    <div id="formula" hidden class="rule">
+      <div class="formula">
+        <div class="c-can"><div class="f">can + verb</div><div class="ex">I can swim. Can you drive?</div><div class="pt">“Eu sei nadar.” Use this for most abilities.</div></div>
+        <div class="c-know"><div class="f">know + information</div><div class="ex">I know the answer. Do you know where it is?</div><div class="pt">Saber uma informação, conhecer alguém.</div></div>
+        <div class="c-how"><div class="f">know how to + verb</div><div class="ex">She knows how to fix computers.</div><div class="pt">Saber os passos, o método. Less common than can.</div></div>
+      </div>
+      <p class="never">Never: <s>I know swim.</s> <s>I know to swim.</s></p>
+      <p class="hint">In large collections of English texts, people use <b>can + verb</b> for abilities much more often than <b>know how to + verb</b>.</p>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section id="context">
+    <div class="kicker">Step 4 · Use it in context <span class="time">12 min</span></div>
+    <h2>Dialogues and a profile</h2>
+    <p class="task">Choose the right word for each gap. Then press <b>Check</b>.</p>
+    <div id="dialogues" style="display:grid;gap:22px"></div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section id="errors">
+    <div class="kicker">Step 5 · Find the mistakes <span class="time">8 min</span></div>
+    <h2>Correct or wrong?</h2>
+    <p class="task">Brazilian students often say these sentences. Is the English correct?</p>
+    <p class="score" id="er-score"></p>
+    <div class="cards" id="errlist"></div>
+  </section>
+
+  <!-- STEP 6 -->
+  <section id="explore">
+    <div class="kicker">Step 6 · Be the researcher <span class="time">5 min + homework</span></div>
+    <h2>Search real English yourself</h2>
+    <p class="task"><b>SkELL</b> is a free search tool for English learners. It shows you real sentences from the internet. Open it in a new tab and follow the steps.</p>
+    <a class="skell-link" href="https://skell.sketchengine.eu/" target="_blank" rel="noopener">Open SkELL ↗</a>
+    <ol class="steps">
+      <li>Type <code>can swim</code> and press Enter. Read five sentences. Who can swim?</li>
+      <li>Type <code>know how to</code>. Which verbs come after it? Write three.</li>
+      <li>Type <code>know</code> and click <b>Word sketch</b>. Look at the words after <i>know</i>. Are they verbs?</li>
+      <li>Write three sentences about you: two with <i>can</i> and one with <i>know</i>.</li>
+    </ol>
+    <div class="panel" style="display:grid;gap:14px">
+      <div class="field"><label class="tl" for="sk-verbs">Verbs after “know how to”</label><textarea id="sk-verbs" placeholder="know how to cook, ..."></textarea></div>
+      <div class="field"><label class="tl" for="sk-me">My three sentences</label><textarea id="sk-me" placeholder="I can ... / I can't ... / I know ..."></textarea></div>
+      <p class="hint">Your notes stay on this device. Copy them to your notebook or share them with your teacher.</p>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section id="end">
+    <div class="kicker">Back to the start</div>
+    <h2>“Eu sei nadar.”</h2>
+    <p class="task" id="end-text">Answer the first question at the top of the page, then come back here.</p>
+  </section>
+
+</div>
+</main>
+
+<footer><div class="wrap">
+  <span>English Box · Data-Driven Learning activity · Level A2</span>
+  <span>Method based on guided discovery with concordance lines (Johns, 1991; Yaylali, Banat &amp; Novikov, 2021) and clear step-by-step instructions for independent DDL (Zakiyah, Susylowati &amp; Rohmah, 2026). Example lines adapted for A2 from common corpus patterns.</span>
+</div></footer>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const store={get(k){try{return localStorage.getItem('cvk-'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('cvk-'+k,v)}catch(e){}}};
+
+/* ---------- warm-up ---------- */
+const warmOpts=[{t:'I know swim.',ok:false},{t:'I can swim.',ok:true},{t:'I know how to swim.',ok:'maybe'}];
+let warmChoice=store.get('warm');
+const warm=$('#warm');
+warmOpts.forEach((o,i)=>{const b=el('button','opt',o.t);b.type='button';b.onclick=()=>{warmChoice=String(i);store.set('warm',warmChoice);paintWarm();renderEnd()};warm.append(b)});
+function paintWarm(){[...warm.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(warmChoice===String(i))));
+  [...warm.children].forEach((b,i)=>{b.style.background=warmChoice===String(i)?'var(--ink)':'';b.style.color=warmChoice===String(i)?'var(--paper)':''});
+  $('#warm-note').hidden=warmChoice==null}
+paintWarm();
+
+/* ---------- concordance ---------- */
+const lines=[
+ {l:'My little sister is only five, but she',k:'can',r:'swim really well.',w:'can'},
+ {l:"I'm sorry, I",k:"can't",r:"drive. I don't have a license.",w:'can'},
+ {l:'',k:'Can',r:'you play the guitar? — Yes, a little.',w:'can'},
+ {l:"He's from Japan, so he",k:'can',r:'speak Japanese and English.',w:'can'},
+ {l:'Wow! Your dog',k:'can',r:'open the door!',w:'can'},
+ {l:'I',k:'can',r:"cook pasta, but I can't make bread.",w:'can'},
+ {l:'Most babies',k:'can',r:'walk at about one year old.',w:'can'},
+ {l:'She',k:'can',r:'type very fast on her phone.',w:'can'},
+ {l:'We',k:"can't",r:'dance. We always stay at the table!',w:'can'},
+ {l:'My grandpa is eighty and he',k:'can',r:'still ride a bike.',w:'can'},
+ {l:"I don't",k:'know',r:'the answer to question five.',w:'know'},
+ {l:'Excuse me, do you',k:'know',r:'where the bus station is?',w:'know'},
+ {l:'I',k:'know',r:"that you're tired, but we need to finish.",w:'know'},
+ {l:'She',k:'knows',r:'a lot about football.',w:'know'},
+ {l:'In Brazil, everybody',k:'knows',r:'Neymar.',w:'know'},
+ {l:'I',k:'know',r:'your brother. We go to the same gym.',w:'know'},
+ {l:'Sorry, do you',k:'know',r:'what time it is?',w:'know'},
+ {l:"I didn't",k:'know',r:'his phone number.',w:'know'},
+ {l:'My son',k:'knows',r:'how to fix computers. He learned on YouTube.',w:'know'},
+ {l:'Do you',k:'know',r:'how to make a good cake? I need a recipe.',w:'know'},
+ {l:'Not many people',k:'know',r:'how to change a car tire.',w:'know'}
+];
+lines.forEach((x,i)=>x.i=i);
+let filt='can',sortBy='orig';
+const first=s=>(s.trim().split(/\s+/)[0]||'').toLowerCase().replace(/[^a-z']/g,'');
+const last=s=>(s.trim().split(/\s+/).pop()||'').toLowerCase().replace(/[^a-z']/g,'');
+function renderConc(){
+  let L=lines.filter(x=>filt==='all'||x.w===filt);
+  if(sortBy==='next')L=[...L].sort((a,b)=>first(a.r).localeCompare(first(b.r))||a.i-b.i);
+  if(sortBy==='prev')L=[...L].sort((a,b)=>last(a.l).localeCompare(last(b.l))||a.i-b.i);
+  const c=$('#conc');c.innerHTML='';
+  L.forEach(x=>{const row=el('div','row');
+    const parts=x.r.split(/(\s+)/);const nx=parts.shift();
+    row.append(el('div','l','<span>'+esc(x.l)+'</span>'),el('div','k','<mark>'+esc(x.k)+'</mark>'),el('div','r','<span class="nx">'+esc(nx)+'</span>'+esc(parts.join(''))));
+    c.append(row)});
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+document.querySelectorAll('.tb[data-f]').forEach(b=>b.onclick=()=>{filt=b.dataset.f;document.querySelectorAll('.tb[data-f]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderConc()});
+document.querySelectorAll('.tb[data-s]').forEach(b=>b.onclick=()=>{sortBy=b.dataset.s;document.querySelectorAll('.tb[data-s]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderConc()});
+renderConc();
+
+/* ---------- multiple-choice helper ---------- */
+function mcq(host,q,opts,fbOk,fbNo){
+  const box=el('div','q');box.append(el('p','qt',q));
+  const row=el('div','opts');const fb=el('p','fb');fb.hidden=true;
+  opts.forEach(o=>{const b=el('button','opt',o.t);b.type='button';b.onclick=()=>{
+    if(o.ok){b.classList.add('right');[...row.children].forEach(x=>x.disabled=true);fb.className='fb';fb.innerHTML=fbOk}
+    else{b.classList.add('wrong');b.disabled=true;fb.className='fb no';fb.innerHTML=o.why||fbNo}
+    fb.hidden=false};row.append(b)});
+  box.append(row,fb);host.append(box);
+}
+const nq=$('#noticeqs');
+mcq(nq,'1. Show “can”. What comes after can / can\'t?',[{t:'a verb (swim, drive, speak)',ok:true},{t:'a noun (the answer, football)'},{t:'to + verb (to swim)'}],'Yes! <b>can + verb</b>, with no “to”: can swim, can drive.','Look again at the underlined words. Sort by “next word” to help you.');
+mcq(nq,'2. Show “know”. What comes after know / knows?',[{t:'a verb (know swim)'},{t:'information: a noun, a person, that…, where/what…',ok:true}],'Right! We know <b>things</b>: the answer, Neymar, where the station is, what time it is.','Look again. Do you see “know swim” or “know drive” anywhere?');
+mcq(nq,'3. Show “both”. Can you find “know” + a verb directly, like “know cook”?',[{t:'Yes'},{t:'No. Only “know how to” + verb',ok:true}],'Exactly. The data has <b>know how to</b> + verb, but never know + verb.','Check again! Sort by “next word”. After know, the verb always comes after “how to”.');
+
+/* ---------- classify ---------- */
+const cls=[
+ {s:'My grandpa is eighty and he <mark>can</mark> still ride a bike.',a:'can'},
+ {s:'Do you <mark>know</mark> where the bus station is?',a:'know'},
+ {s:'My son <mark>knows how to</mark> fix computers.',a:'how'},
+ {s:'Most babies <mark>can</mark> walk at about one year old.',a:'can'},
+ {s:'In Brazil, everybody <mark>knows</mark> Neymar.',a:'know'},
+ {s:'Not many people <mark>know how to</mark> change a car tire.',a:'how'},
+ {s:'I <mark>can\'t</mark> drive. I don\'t have a license.',a:'can'},
+ {s:'I didn\'t <mark>know</mark> his phone number.',a:'know'},
+ {s:'He <mark>can</mark> speak Japanese and English.',a:'can'}
+];
+const groups=[{id:'can',t:'Ability',c:'c-can'},{id:'know',t:'Information',c:'c-know'},{id:'how',t:'Learned steps',c:'c-how'}];
+let clDone=0;const cards=$('#cards');
+cls.forEach(x=>{const c=el('div','card');c.append(el('p','s',x.s));const r=el('div','opts');
+  groups.forEach(g=>{const b=el('button','chip',g.t);b.type='button';b.onclick=()=>{
+    if(g.id===x.a){b.classList.add('right',g.c);[...r.children].forEach(y=>y.disabled=true);c.classList.add('done');clDone++;clScore()}
+    else{b.classList.add('wrong');b.disabled=true}};r.append(b)});
+  c.append(r);cards.append(c)});
+function clScore(){$('#cl-score').innerHTML='Sorted: <b>'+clDone+' / '+cls.length+'</b>'}
+clScore();
+
+/* ---------- rule ---------- */
+const rules=[
+ {pre:'To talk about an ability, we usually use',opts:['can','know'],a:'can',post:'+ a verb.'},
+ {pre:'After can, the verb has',opts:['no “to”','“to”'],a:'no “to”',post:'(can swim, not can to swim).'},
+ {pre:'After know, we usually put',opts:['information','a verb'],a:'information',post:'(the answer, a person, where…).'},
+ {pre:'If we use know with a verb, we need',opts:['how to','nothing'],a:'how to',post:'(know how to cook).'}
+];
+const rb=$('#rulebox');const sels=[];
+rules.forEach((r,i)=>{const line=el('div','line');line.append(el('span','',r.pre));
+  const s=document.createElement('select');s.id='rule-'+i;s.setAttribute('aria-label','Rule '+(i+1));
+  s.append(new Option('choose…',''));r.opts.forEach(o=>s.append(new Option(o,o)));
+  s.onchange=()=>{s.classList.remove('right','wrong')};sels.push(s);line.append(s,el('span','',r.post));rb.append(line)});
+const ra=el('div','row-actions');const rbtn=el('button','btn','Check my rule');rbtn.type='button';const rfb=el('p','fb');rfb.hidden=true;
+rbtn.onclick=()=>{let ok=0;sels.forEach((s,i)=>{s.classList.remove('right','wrong');if(!s.value)return;if(s.value===rules[i].a){s.classList.add('right');ok++}else s.classList.add('wrong')});
+  rfb.hidden=false;if(ok===rules.length){rfb.className='fb';rfb.textContent='Perfect! This is your rule. Here it is in a table.';$('#formula').hidden=false}
+  else{rfb.className='fb no';rfb.textContent=ok+' of '+rules.length+' correct. Look at Steps 1 and 2 again and try the red ones.'}};
+ra.append(rbtn);rb.append(ra,rfb);
+
+/* ---------- dialogues ---------- */
+const W=['can',"can't",'know','knows'];
+const texts=[
+ {h:'At the café',ctx:'Lucas wants a job at a coffee shop. He talks to the manager.',turns:[
+  ['Manager','So, Lucas, tell me about you. [[can|Can]] you make coffee?'],
+  ['Lucas','Yes, I [[can]] make espresso and cappuccino.'],
+  ['Manager','Great. Do you [[know]] how to use this machine?'],
+  ['Lucas',"No, I don't. But I [[can]] learn fast!"],
+  ['Manager','And do you [[know]] our menu?'],
+  ['Lucas',"Not yet, sorry. But I [[know]] your café is famous for its cakes!"]]},
+ {h:'Weekend in Rio',ctx:'Ana and Bia are planning a trip.',turns:[
+  ['Ana','I [[know]] a nice place to stay. My cousin has an apartment there.'],
+  ['Bia',"Cool! But I [[can't]] swim. Is that a problem?"],
+  ['Ana','No problem! I [[know]] a great swimming teacher in Rio.'],
+  ['Bia','Really? Do you [[know]] how to surf too?'],
+  ['Ana','Yes! I [[can]] teach you!']]},
+ {h:'Meet Carla',ctx:'A student profile from a school website.',prose:'Carla is 16. She [[can]] play the piano and she [[can]] speak three languages. She [[knows]] a lot about K-pop. She doesn\'t [[know]] how to cook, but she [[can]] make a great sandwich. She is very friendly, so she [[knows]] everybody at her school.'}
+];
+const dlgHost=$('#dialogues');let gapId=0;
+function fill(str,gaps){return str.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,(m,a,shown)=>{const id='gap-'+(gapId++);gaps.push({id,a:a.toLowerCase()});
+  return '<select class="gap" id="'+id+'" aria-label="gap"><option value="">_____</option>'+W.map(w=>'<option>'+w+'</option>').join('')+'</select>'})}
+texts.forEach(t=>{const box=el('div','panel dlg');box.append(el('h3','',t.h),el('p','ctx',t.ctx));const gaps=[];
+  if(t.turns){t.turns.forEach(([w,s])=>{const tr=el('div','turn');tr.append(el('span','who',w),el('span','',fill(esc(s),gaps)));box.append(tr)})}
+  else box.append(el('p','prose',fill(esc(t.prose),gaps)));
+  const ra=el('div','row-actions');const b=el('button','btn','Check');b.type='button';const rs=el('button','btn ghost','Try again');rs.type='button';const fb=el('p','fb');fb.hidden=true;
+  b.onclick=()=>{let ok=0;gaps.forEach(g=>{const s=document.getElementById(g.id);s.classList.remove('right','wrong');if(s.value.toLowerCase()===g.a){s.classList.add('right');ok++}else if(s.value)s.classList.add('wrong')});
+    fb.hidden=false;fb.className=ok===gaps.length?'fb':'fb no';fb.textContent=ok===gaps.length?'All correct! '+gaps.length+' / '+gaps.length:ok+' / '+gaps.length+' correct. Tip: is there a verb after the gap, or information?'};
+  rs.onclick=()=>{gaps.forEach(g=>{const s=document.getElementById(g.id);s.value='';s.classList.remove('right','wrong')});fb.hidden=true};
+  ra.append(b,rs);box.append(ra,fb);dlgHost.append(box)});
+
+/* ---------- errors ---------- */
+const errs=[
+ {s:'I know swim.',ok:false,fix:'I <b>can</b> swim.',why:'Ability + verb → can.'},
+ {s:'Do you know play the guitar?',ok:false,fix:'<b>Can</b> you play the guitar?',why:'Ability → can. (Do you know how to play… is possible, but less common.)'},
+ {s:'I know the answer.',ok:true,why:'Information → know. Correct!'},
+ {s:"I don't know speak French.",ok:false,fix:"I <b>can't</b> speak French.",why:'No ability → can\'t + verb.'},
+ {s:'She knows how to fix bikes.',ok:true,why:'Learned steps → know how to + verb. Correct!'},
+ {s:'I can your name.',ok:false,fix:'I <b>know</b> your name.',why:'A name is information → know.'},
+ {s:'He know to drive.',ok:false,fix:'He <b>can</b> drive. / He <b>knows how to</b> drive.',why:'Never “know to” + verb.'},
+ {s:'Do you know where the bank is?',ok:true,why:'Information (where…) → know. Correct!'}
+];
+let erDone=0,erRight=0;const el2=$('#errlist');
+errs.forEach(x=>{const c=el('div','err');c.append(el('p','s',esc(x.s)));const r=el('div','opts');const fb=el('p','fb');fb.hidden=true;
+  [['Correct',true],['Wrong',false]].forEach(([t,v])=>{const b=el('button','opt',t);b.type='button';b.onclick=()=>{
+    const good=v===x.ok;b.classList.add(good?'right':'wrong');[...r.children].forEach(y=>y.disabled=true);erDone++;if(good)erRight++;erScore();
+    fb.className=good?'fb':'fb no';fb.innerHTML=(good?'Yes. ':'Not this time. ')+(x.fix?'Better: '+x.fix+' ':'')+x.why;fb.hidden=false};r.append(b)});
+  c.append(r,fb);el2.append(c)});
+function erScore(){$('#er-score').innerHTML='Answered: <b>'+erDone+' / '+errs.length+'</b> · Right: <b>'+erRight+'</b>'}
+erScore();
+
+/* ---------- skell notes ---------- */
+['sk-verbs','sk-me'].forEach(id=>{const t=document.getElementById(id);const v=store.get(id);if(v)t.value=v;t.addEventListener('input',()=>store.set(id,t.value))});
+
+/* ---------- end ---------- */
+function renderEnd(){const e=$('#end-text');if(warmChoice==null){e.textContent='Answer the first question at the top of the page, then come back here.';return}
+  const o=warmOpts[+warmChoice];
+  const msg={true:'You chose “I can swim.” Great! This is the most common way to say it.',maybe:'You chose “I know how to swim.” It is correct, but “I can swim” is much more common. Use know how to when you want to say that you learned the steps.',false:'You chose “I know swim.” Now you know why it is wrong: after know, we put information, not a verb. Say “I can swim.”'};
+  e.innerHTML=msg[String(o.ok)]+' <b>Now tell a partner three things you can do and one thing you know a lot about.</b>'}
+renderEnd();
+})();
+</script>
+</body>
+</html>
