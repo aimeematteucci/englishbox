@@ -1,0 +1,263 @@
+<title>Can or Know? Slides</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Inter+Tight:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Oswald:wght@300;400&family=Patrick+Hand&display=swap">
+<style>
+/* Layout: 16:9 classroom deck scaled to the window, English Box look committed to one palette (green editorial + paper slides); click or arrow keys reveal steps, N shows teacher notes. */
+:root{
+  --green:#56886A; --deep:#2F6B47; --sage:#7FA98A; --cream:#F4EFE4; --paper:#EDECE8; --ink:#1E1E1E;
+  --lime:#C6F135; --star:#E8C832; --red:#C7505E; --room:#141a16;
+  --f-display:"Fraunces",Georgia,serif; --f-body:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Courier Prime","Courier New",monospace; --f-kicker:"Oswald","Arial Narrow",sans-serif; --f-hand:"Patrick Hand",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--room);color:var(--cream);font-family:var(--f-body);overflow:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stage{position:absolute;inset:0;overflow:hidden}
+.deck{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;padding:80px 110px;display:none;flex-direction:column;gap:34px;overflow:hidden;border-radius:6px}
+.slide.on{display:flex}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.g{background:var(--green);color:var(--cream)}
+.p{background:var(--paper);color:var(--ink)}
+.corner{position:absolute;top:34px;font-size:22px;line-height:1.12}
+.corner.l{left:44px}.corner.r{right:44px;text-align:right}
+.corner b{font-weight:700}
+.kick{font-family:var(--f-kicker);font-weight:300;text-transform:uppercase;letter-spacing:.14em;font-size:28px;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px;margin-top:30px}
+h1,h2{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:180px}
+h2{font-size:84px}
+h1 i,h2 i{font-style:italic}
+.p h2 i{color:var(--deep)}
+.big{font-size:40px;line-height:1.35;max-width:30ch}
+.hl{background:linear-gradient(transparent 55%,rgba(127,169,138,.75) 55%);padding:0 6px}
+.pill{background:var(--lime);color:var(--ink);border:4px solid var(--ink);border-radius:999px;padding:14px 34px;font-family:var(--f-mono);font-weight:700;font-size:34px;width:fit-content}
+.bubbles{display:flex;gap:40px;flex-wrap:wrap}
+.bub{background:#F4F2EC;color:var(--ink);border:4px solid var(--ink);border-radius:28px;padding:22px 36px;font-family:var(--f-hand);font-size:56px;position:relative}
+.bub small{display:block;font-family:var(--f-kicker);font-size:20px;letter-spacing:.1em}
+.conc{font-family:var(--f-mono);font-size:33px;display:grid;grid-template-columns:1fr auto 1fr;column-gap:18px;row-gap:12px;align-items:baseline;background:#F8F7F3;color:var(--ink);border:3px solid var(--ink);border-radius:18px;padding:30px 36px}
+.conc .l{text-align:right;white-space:nowrap}
+.conc .k{background:var(--lime);font-weight:700;padding:0 10px;border-radius:6px}
+.conc .r{white-space:nowrap}
+.conc .r u{text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--deep)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.box{border-radius:22px;padding:30px;color:var(--ink);display:flex;flex-direction:column;gap:12px;border:3px solid var(--ink)}
+.box .t{font-family:var(--f-display);font-size:46px;font-weight:600}
+.box .f{font-family:var(--f-mono);font-weight:700;font-size:32px}
+.box .e{font-size:28px}
+.box .pt{font-size:23px;opacity:.75}
+.b-can{background:var(--lime)}.b-know{background:var(--star)}.b-how{background:#A9CDB3}
+.qs{display:grid;gap:26px;font-size:40px;margin:0;padding-left:50px}
+.qs li::marker{font-family:var(--f-kicker);color:var(--lime)}
+.ans{font-family:var(--f-mono);font-size:30px;color:var(--deep);display:block;margin-top:6px}
+.errs{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;font-family:var(--f-mono);font-size:38px}
+.errs div{display:flex;flex-direction:column;gap:4px}
+.errs s{color:var(--red);text-decoration-thickness:3px}
+.errs b{color:var(--deep)}
+.never{font-family:var(--f-mono);font-size:38px;color:#F7C9CF}
+.p .never{color:var(--red)}
+.steps-list{font-size:38px;display:grid;gap:22px;margin:0;padding-left:50px}
+.steps-list code{font-family:var(--f-mono);background:var(--lime);color:var(--ink);padding:0 10px;border-radius:6px;font-weight:700}
+.url{font-family:var(--f-mono);font-size:44px;background:var(--cream);color:var(--ink);padding:10px 26px;border-radius:12px;width:fit-content}
+.mt-auto{margin-top:auto}
+.small{font-size:26px;opacity:.85}
+.step{transition:opacity .25s}
+.step.hide{opacity:0;visibility:hidden}
+
+/* teacher notes */
+.notes{position:fixed;left:0;right:0;bottom:0;background:#0d120f;color:var(--cream);font-size:15px;line-height:1.5;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  max-height:38%;overflow:auto;border-top:1px solid #2c3a31;display:none;z-index:5}
+.notes.on{display:block}
+.notes b{font-family:var(--f-kicker);letter-spacing:.1em;text-transform:uppercase;font-weight:400;color:var(--lime)}
+.nav{position:fixed;right:max(16px,env(safe-area-inset-right,0px));top:calc(12px + env(safe-area-inset-top,0px));display:flex;gap:8px;z-index:6;align-items:center}
+.nav button{background:#26322b;color:var(--cream);border:1px solid #3a4a40;border-radius:999px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}
+.nav button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.nav .count{font-family:var(--f-kicker);letter-spacing:.1em;font-size:14px;color:#b8c4bc;min-width:56px;text-align:center}
+@media (prefers-reduced-motion:reduce){.step{transition:none}}
+</style>
+
+<div class="nav">
+  <button type="button" id="prev" aria-label="Previous slide">←</button>
+  <span class="count" id="count">1 / 12</span>
+  <button type="button" id="next" aria-label="Next slide">→</button>
+  <button type="button" id="notesBtn" aria-pressed="false">Notes (N)</button>
+</div>
+
+<div class="stage"><div class="deck" id="deck">
+
+<!-- 1 -->
+<section class="slide g" data-notes="Apresente o tema sem explicar a regra. Em DDL o aluno descobre o padrão sozinho: o professor guia, não entrega. Diga só: 'Today you are language detectives.'">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="corner r">Data-Driven<br><b>Learning</b></div>
+  <div class="kick">Today's question</div>
+  <h1>Can <i>or</i><br>know?</h1>
+  <p class="big mt-auto">Look at real English. Find the pattern. <span class="hl">Make the rule yourself.</span></p>
+</section>
+
+<!-- 2 -->
+<section class="slide p" data-notes="Warm-up (2 min). Peça que cada aluno escolha uma opção (mão levantada ou na página interativa). Não corrija ainda: voltamos a essa pergunta no final.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="pill">How do you say it in English?</div>
+  <h2>“Eu <i>sei</i> nadar.”</h2>
+  <div class="bubbles">
+    <div class="bub"><small>A</small>I know swim.</div>
+    <div class="bub"><small>B</small>I can swim.</div>
+    <div class="bub"><small>C</small>I know how to swim.</div>
+  </div>
+  <p class="small mt-auto">Choose one. We will check at the end.</p>
+</section>
+
+<!-- 3 -->
+<section class="slide p" data-notes="Step 1 (5 min). Linhas de concordância: a palavra-chave fica no meio. Pergunte: 'What word comes after can?' Clique para mostrar a pergunta. Resposta esperada: um verbo, sem 'to'.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick" style="margin-top:20px">Step 1 · Look at the data</div>
+  <div class="conc">
+    <span class="l">My little sister is only five, but she</span><span class="k">can</span><span class="r"><u>swim</u> really well.</span>
+    <span class="l">I'm sorry, I</span><span class="k">can't</span><span class="r"><u>drive</u>. I don't have a license.</span>
+    <span class="l">He's from Japan, so he</span><span class="k">can</span><span class="r"><u>speak</u> Japanese and English.</span>
+    <span class="l">Wow! Your dog</span><span class="k">can</span><span class="r"><u>open</u> the door!</span>
+    <span class="l">Most babies</span><span class="k">can</span><span class="r"><u>walk</u> at about one year old.</span>
+    <span class="l">My grandpa is eighty and he</span><span class="k">can</span><span class="r">still <u>ride</u> a bike.</span>
+  </div>
+  <p class="big step hide" style="font-size:44px">What comes <span class="hl">after</span> can?</p>
+</section>
+
+<!-- 4 -->
+<section class="slide p" data-notes="Step 1 (5 min). Agora 'know'. Pergunte: 'Do you see know + a verb?' Os alunos devem notar que depois de know vem informação (um fato, uma pessoa, where/what/that) e que o verbo só aparece depois de 'how to'.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick" style="margin-top:20px">Step 1 · Look at the data</div>
+  <div class="conc">
+    <span class="l">I don't</span><span class="k">know</span><span class="r"><u>the</u> answer to question five.</span>
+    <span class="l">Excuse me, do you</span><span class="k">know</span><span class="r"><u>where</u> the bus station is?</span>
+    <span class="l">In Brazil, everybody</span><span class="k">knows</span><span class="r"><u>Neymar</u>.</span>
+    <span class="l">I</span><span class="k">know</span><span class="r"><u>your</u> brother. We go to the same gym.</span>
+    <span class="l">Sorry, do you</span><span class="k">know</span><span class="r"><u>what</u> time it is?</span>
+    <span class="l">My son</span><span class="k">knows</span><span class="r"><u>how</u> to fix computers.</span>
+  </div>
+  <p class="big step hide" style="font-size:44px">Do you see <span class="hl">know + verb</span>?</p>
+</section>
+
+<!-- 5 -->
+<section class="slide g" data-notes="Noticing (3 min). Revele uma resposta por clique. Deixe os alunos responderem antes de mostrar.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick">What did you notice?</div>
+  <ol class="qs">
+    <li>After <b>can</b>, we see…<span class="ans step hide" style="color:var(--cream);font-weight:700">a verb, with no “to”: can swim</span></li>
+    <li>After <b>know</b>, we see…<span class="ans step hide" style="color:var(--cream);font-weight:700">information: the answer, Neymar, where…</span></li>
+    <li>Know + verb?<span class="ans step hide" style="color:var(--cream);font-weight:700">only with “how to”: know how to fix</span></li>
+  </ol>
+</section>
+
+<!-- 6 -->
+<section class="slide p" data-notes="Step 2 (8 min). Os alunos classificam as frases na página interativa (ou em duplas no caderno). Circule e pergunte: 'Is it an ability or information?'">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick" style="margin-top:20px">Step 2 · Sort the lines</div>
+  <h2>Three groups</h2>
+  <div class="three">
+    <div class="box b-can"><span class="t">Ability</span><span class="e">He can speak Japanese.</span></div>
+    <div class="box b-know"><span class="t">Information</span><span class="e">Everybody knows Neymar.</span></div>
+    <div class="box b-how"><span class="t">Learned steps</span><span class="e">My son knows how to fix computers.</span></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide p" data-notes="Step 3 (5 min). Primeiro os alunos escrevem a regra com as próprias palavras. Depois revele a tabela. Reforce: em português usamos 'saber' para tudo; em inglês a habilidade quase sempre é 'can'.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick" style="margin-top:20px">Step 3 · Your rule</div>
+  <div class="three step hide">
+    <div class="box b-can"><span class="f">can + verb</span><span class="e">I can swim.<br>Can you drive?</span><span class="pt">Most abilities</span></div>
+    <div class="box b-know"><span class="f">know + information</span><span class="e">I know the answer.<br>Do you know where it is?</span><span class="pt">Facts, people, places</span></div>
+    <div class="box b-how"><span class="f">know how to + verb</span><span class="e">She knows how to fix computers.</span><span class="pt">The steps, the method</span></div>
+  </div>
+  <p class="never step hide">Never: <s>I know swim.</s> <s>I know to swim.</s></p>
+</section>
+
+<!-- 8 -->
+<section class="slide g" data-notes="Frequência: em grandes corpora, 'can + verbo' para habilidade é muito mais frequente que 'know how to + verbo'. 'Know how to' destaca que a pessoa aprendeu um método ou técnica. Bom momento para mostrar isso ao vivo no SkELL, se houver projetor.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick">What real English says</div>
+  <h2>For abilities, <i>can</i> wins.</h2>
+  <p class="big">In large collections of English texts, people say <span class="hl">I can swim</span> much more often than <span class="hl">I know how to swim</span>.</p>
+  <p class="big small mt-auto">Know how to = you learned the steps. “She knows how to change a tire.”</p>
+</section>
+
+<!-- 9 -->
+<section class="slide p" data-notes="Step 4 (12 min). Os alunos completam os dois diálogos e o perfil na página interativa. Depois, leiam os diálogos em voz alta em duplas.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="pill">Step 4 · At the café</div>
+  <div style="display:grid;gap:22px;font-size:40px">
+    <p><b style="font-family:var(--f-kicker);font-weight:400;letter-spacing:.08em;color:var(--deep)">MANAGER</b>&nbsp; ______ you make coffee?</p>
+    <p><b style="font-family:var(--f-kicker);font-weight:400;letter-spacing:.08em;color:var(--deep)">LUCAS</b>&nbsp; Yes, I ______ make espresso and cappuccino.</p>
+    <p><b style="font-family:var(--f-kicker);font-weight:400;letter-spacing:.08em;color:var(--deep)">MANAGER</b>&nbsp; Do you ______ how to use this machine?</p>
+    <p><b style="font-family:var(--f-kicker);font-weight:400;letter-spacing:.08em;color:var(--deep)">LUCAS</b>&nbsp; No, I don't. But I ______ learn fast!</p>
+  </div>
+  <p class="ans step hide" style="font-size:36px">Can · can · know · can</p>
+</section>
+
+<!-- 10 -->
+<section class="slide p" data-notes="Step 5 (8 min). Erros típicos de brasileiros (transferência do 'saber' do português). Pergunte 'Correct or wrong?' antes de revelar as correções.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick" style="margin-top:20px">Step 5 · Correct or wrong?</div>
+  <div class="errs">
+    <div><span>I know swim.</span><b class="step hide">→ I can swim.</b></div>
+    <div><span>I know the answer.</span><b class="step hide">✓ correct</b></div>
+    <div><span>I don't know speak French.</span><b class="step hide">→ I can't speak French.</b></div>
+    <div><span>I can your name.</span><b class="step hide">→ I know your name.</b></div>
+    <div><span>He know to drive.</span><b class="step hide">→ He can drive.</b></div>
+    <div><span>Do you know where the bank is?</span><b class="step hide">✓ correct</b></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide g" data-notes="Step 6 (5 min + tarefa de casa). Se possível, faça a primeira busca ao vivo no projetor. Mostre o botão Word sketch. Os alunos fazem o resto em casa e anotam na página interativa.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick">Step 6 · Be the researcher</div>
+  <div class="url">skell.sketchengine.eu</div>
+  <ol class="steps-list">
+    <li>Search <code>can swim</code>. Read five sentences.</li>
+    <li>Search <code>know how to</code>. Write three verbs.</li>
+    <li>Search <code>know</code> → Word sketch. Any verbs after it?</li>
+    <li>Write: two sentences with <i>can</i>, one with <i>know</i>.</li>
+  </ol>
+</section>
+
+<!-- 12 -->
+<section class="slide g" data-notes="Fechamento (2 min). Volte ao warm-up: quem escolheu cada opção? Exit ticket oral em duplas.">
+  <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>
+  <div class="kick">Back to the start</div>
+  <h2>“Eu sei nadar.”</h2>
+  <p class="big step hide" style="font-size:60px;font-family:var(--f-display)"><span class="hl">I can swim.</span></p>
+  <p class="big mt-auto">Tell a partner: <b>three</b> things you <i>can</i> do and <b>one</b> thing you <i>know</i> a lot about.</p>
+</section>
+
+</div></div>
+
+<div class="notes" id="notes" aria-live="polite"></div>
+
+<script>
+(function(){
+const deck=document.getElementById('deck');const slides=[...deck.querySelectorAll('.slide')];
+const notes=document.getElementById('notes');const count=document.getElementById('count');const nb=document.getElementById('notesBtn');
+let i=0;
+function fit(){const s=Math.min(window.innerWidth/1600,window.innerHeight/900)*0.96;deck.style.transform='translate(-50%,-50%) scale('+s+')'}
+function show(n,fromBack){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  slides[i].querySelectorAll('.step').forEach(x=>x.classList.toggle('hide',!fromBack));
+  count.textContent=(i+1)+' / '+slides.length;notes.innerHTML='<b>Slide '+(i+1)+'</b> · '+(slides[i].dataset.notes||'');
+  try{location.hash='s'+(i+1)}catch(e){}}
+function next(){const h=slides[i].querySelector('.step.hide');if(h){h.classList.remove('hide');return}if(i<slides.length-1)show(i+1)}
+function prev(){const shown=[...slides[i].querySelectorAll('.step:not(.hide)')];if(shown.length){shown.pop().classList.add('hide');return}if(i>0)show(i-1,true)}
+document.getElementById('next').onclick=next;document.getElementById('prev').onclick=prev;
+nb.onclick=()=>{const on=notes.classList.toggle('on');nb.setAttribute('aria-pressed',String(on))};
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next()}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==='n'||e.key==='N')nb.click()});
+deck.addEventListener('click',e=>{if(e.target.closest('a'))return;next()});
+window.addEventListener('resize',fit);fit();
+const m=/^#s(\d+)$/.exec(location.hash);show(m?+m[1]-1:0);
+})();
+</script>
