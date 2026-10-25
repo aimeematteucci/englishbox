@@ -28,7 +28,7 @@ The deck is 1600×900, scaled to the window. You write only the `<section>` elem
 
 ## Components
 - `.kick`: condensed caps kicker. `.pill`: lime label with a black border. `h1` (180px), `h2` (84px), `<i>` for emphasis. `.big`: 40px body. `.small`. `.hl`: sage highlighter. `.mt-auto`: pushes to the bottom.
-- `.bubbles > .bub > small`: speech bubbles for warm-up options.
+- `.bubbles > .bub > small`: speech bubbles for warm-up options. Keep each option under ~30 characters; for longer options use `<div class="bubbles compact">` (40px). If it still overflows, shorten the sentence. Avoid inline style overrides.
 - `.conc`: concordance. Repeat `<span class="l">…</span><span class="k">word</span><span class="r"><u>next</u> rest</span>`. **Keep each line short** (left ≤ ~30 characters, right ≤ ~32) or it spills out of the box; shorten lines from the activity if needed.
 - Boxes: wrapper `.two` / `.three` / `.four`, each child `.box` plus a color: `b-can` (lime), `b-know` (yellow), `b-how` (sage), `b-d` (peach). Inside: `.t` title, `.f` mono formula, `.e` example, `.pt` Portuguese gloss.
 - `.qs` (ordered list) with `<span class="ans step hide">`. On green slides set `style="color:var(--cream);font-weight:700"` on `.ans`.

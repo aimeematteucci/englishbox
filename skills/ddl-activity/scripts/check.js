@@ -16,7 +16,8 @@ const shots = process.argv[3] ? path.resolve(process.argv[3]) : null;
     await p.goto('file://' + act); await p.waitForTimeout(600);
     const info = await p.evaluate(() => ({
       sw: document.documentElement.scrollWidth,
-      lines: document.querySelectorAll('#conc .row').length,
+      linesTotal: (typeof DATA!=='undefined'&&DATA)?DATA.concordance.lines.length:null,
+      linesShownInFirstFilter: document.querySelectorAll('#conc .row').length,
       cards: document.querySelectorAll('#cards .card').length,
       gaps: document.querySelectorAll('select.gap').length,
       errs: document.querySelectorAll('#errlist .err').length,
