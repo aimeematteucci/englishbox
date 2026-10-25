@@ -1,0 +1,151 @@
+{
+  "slug": "deal-vs-handle",
+  "title": "Deal or Handle?",
+  "h1": "Deal <i>or</i> handle?",
+  "lede": "In Portuguese, both are “lidar com”. In English, the context decides. Look at real examples, find the contexts, and make the rule yourself.",
+  "level": "B1",
+  "duration": "About 50 minutes",
+  "times": {"classify": "10 min"},
+
+  "warmup": {
+    "pt": "“Eu não sei <i>lidar com</i> isso.”",
+    "options": [
+      {"t": "I don't know handle with it.", "msg": "You chose “I don't know handle with it.” Now you know why it is wrong: handle never takes “with”, and “não sei” here means <b>can't</b>. Say “I can't deal with it” or “I can't handle it.”"},
+      {"t": "I can't deal with it.", "msg": "You chose “I can't deal with it.” Correct! Use it when the problem is about feelings or a difficult person: “My ex keeps calling me. I can't deal with it.”"},
+      {"t": "I can't handle it.", "msg": "You chose “I can't handle it.” Correct! Use it when it is about capacity, when something is too much for you: “Three jobs? I can't handle it.”"}
+    ],
+    "close": "Both B and C are correct. The context decides. <b>Now tell a partner one thing you can handle easily and one thing that is hard for you to deal with.</b>"
+  },
+
+  "concordance": {
+    "keys": [{"id": "deal", "label": "deal"}, {"id": "handle", "label": "handle"}],
+    "lines": [
+      {"l": "I'm busy now. I'll", "k": "deal", "r": "with the emails tomorrow.", "w": "deal"},
+      {"l": "Who's going to", "k": "deal", "r": "with the broken window?", "w": "deal"},
+      {"l": "We need to", "k": "deal", "r": "with this problem before Monday.", "w": "deal"},
+      {"l": "How do you", "k": "deal", "r": "with stress before an exam?", "w": "deal"},
+      {"l": "After his dog died, he had to", "k": "deal", "r": "with a lot of sadness.", "w": "deal"},
+      {"l": "I can't", "k": "deal", "r": "with my neighbor. He's so rude!", "w": "deal"},
+      {"l": "Nurses", "k": "deal", "r": "with sick and scared people every day.", "w": "deal"},
+      {"l": "The movie", "k": "deals", "r": "with family and friendship.", "w": "deal"},
+      {"l": "OK, it's a", "k": "deal", "r": ". I cook, you wash the dishes.", "w": "deal"},
+      {"l": "Relax, it's no big", "k": "deal", "r": ".", "w": "deal"},
+      {"l": "Don't worry about the project. I can", "k": "handle", "r": "it.", "w": "handle"},
+      {"l": "Five meetings in one day? That's too much to", "k": "handle", "r": ".", "w": "handle"},
+      {"l": "He couldn't", "k": "handle", "r": "the pressure, so he quit.", "w": "handle"},
+      {"l": "She", "k": "handled", "r": "the angry customer really well.", "w": "handle"},
+      {"l": "The government", "k": "handled", "r": "the crisis badly.", "w": "handle"},
+      {"l": "In our family, my mom", "k": "handles", "r": "the money.", "w": "handle"},
+      {"l": "Our team", "k": "handles", "r": "all the online orders.", "w": "handle"},
+      {"l": "Please", "k": "handle", "r": "the glasses with care.", "w": "handle"},
+      {"l": "Wash your hands before you", "k": "handle", "r": "food.", "w": "handle"},
+      {"l": "I'm not sure how to", "k": "handle", "r": "my new boss.", "w": "handle"}
+    ]
+  },
+
+  "notice": [
+    {"q": "Show “deal”. When deal is a verb, what word comes right after it?", "opts": [{"t": "with", "ok": true}, {"t": "the thing directly (deal the problem)"}, {"t": "about"}], "ok": "Yes! The verb is always <b>deal with</b> + something.", "no": "Look again. Sort by “next word” to help you."},
+    {"q": "Show “handle”. What comes after handle?", "opts": [{"t": "with + the thing"}, {"t": "the thing directly: it, the pressure, the money", "ok": true}], "ok": "Right! <b>handle + it / the pressure</b>. No “with”. (In “handle the glasses with care”, <i>with</i> goes with <i>care</i>.)", "no": "Look again. Do you see “handle with the problem”?"},
+    {"q": "Show “deal”. Look at the words after “deal with”: the emails, the broken window, stress, sadness, my neighbor. These are…", "opts": [{"t": "things you like"}, {"t": "things you touch"}, {"t": "tasks, problems, feelings and people you need to face", "ok": true}], "ok": "Exactly. We <b>deal with</b> things that need our attention, and often they are difficult or unpleasant.", "no": "Not quite. Are emails, sadness and a rude neighbor nice things?"},
+    {"q": "Show “handle”. Look at the words around it: can, couldn't, too much, well, badly. What do they tell us?", "opts": [{"t": "handle is about capacity: can you manage it? how well?", "ok": true}, {"t": "handle is about feelings"}, {"t": "handle is about the future"}], "ok": "Yes! <b>handle</b> often talks about <b>capacity</b> and <b>performance</b>: I can handle it, she handled it well.", "no": "Look at can / couldn't / too much / well / badly again. What do these words measure?"},
+    {"q": "Show “deal”. Find “it's a deal” and “no big deal”. Here, deal is…", "opts": [{"t": "a verb"}, {"t": "a noun: an agreement, or something important", "ok": true}], "ok": "Right. <b>It's a deal!</b> = combinado. <b>No big deal</b> = nada demais.", "no": "There is no “with” here, and there is “a” before deal. What does that tell you?"}
+  ],
+
+  "classify": {
+    "kicker": "Find the context",
+    "title": "Four contexts",
+    "task": "Read each sentence. What is the situation? Tap a context.",
+    "groups": [
+      {"id": "task", "title": "A task or a problem", "chip": "Task / problem", "desc": "You do something about it, now or later.", "color": "lime"},
+      {"id": "feel", "title": "Feelings and people", "chip": "Feelings / people", "desc": "Difficult emotions or difficult people.", "color": "yellow"},
+      {"id": "cap", "title": "Capacity", "chip": "Capacity", "desc": "Can I manage it? How well did I do it?", "color": "sage"},
+      {"id": "hand", "title": "In charge, or hands", "chip": "In charge / hands", "desc": "Your job or role, or you touch it.", "color": "peach"}
+    ],
+    "items": [
+      {"s": "I'll <mark>deal with</mark> the emails tomorrow.", "a": "task"},
+      {"s": "How do you <mark>deal with</mark> stress before an exam?", "a": "feel"},
+      {"s": "Don't worry about the project. I can <mark>handle</mark> it.", "a": "cap"},
+      {"s": "In our family, my mom <mark>handles</mark> the money.", "a": "hand"},
+      {"s": "I can't <mark>deal with</mark> my neighbor. He's so rude!", "a": "feel"},
+      {"s": "Who's going to <mark>deal with</mark> the broken window?", "a": "task"},
+      {"s": "She <mark>handled</mark> the angry customer really well.", "a": "cap"},
+      {"s": "Wash your hands before you <mark>handle</mark> food.", "a": "hand"},
+      {"s": "He couldn't <mark>handle</mark> the pressure, so he quit.", "a": "cap"},
+      {"s": "Nurses <mark>deal with</mark> sick and scared people every day.", "a": "feel"}
+    ],
+    "after": {"q": "Now look at your four groups. Which verb do you see in each one?", "opts": [{"t": "Task and Feelings → handle · Capacity and In charge → deal with"}, {"t": "Task and Feelings → deal with · Capacity and In charge → handle", "ok": true}, {"t": "All four groups use both verbs"}], "ok": "Yes! The <b>context</b> helps you choose: tasks, feelings and difficult people → <b>deal with</b>. Capacity, being in charge, hands → <b>handle</b>.", "no": "Look at the underlined words in each group again."}
+  },
+
+  "rule": {
+    "lines": [
+      {"pre": "After the verb deal, we need", "opts": ["with", "nothing"], "a": "with", "post": "(deal with stress)."},
+      {"pre": "After handle, we need", "opts": ["nothing", "with"], "a": "nothing", "post": "(handle the pressure)."},
+      {"pre": "For a task, a problem, a feeling or a difficult person, we usually use", "opts": ["deal with", "handle"], "a": "deal with", "post": "."},
+      {"pre": "For capacity (I can / can't, too much) or how well someone did something, we usually use", "opts": ["handle", "deal with"], "a": "handle", "post": "."},
+      {"pre": "For your job or role, or for touching something with your hands, we use", "opts": ["handle", "deal with"], "a": "handle", "post": "."}
+    ],
+    "boxes": [
+      {"f": "deal with + task / problem", "ex": "I'll deal with the emails tomorrow.", "pt": "Resolver, tratar de, cuidar de.", "color": "lime"},
+      {"f": "deal with + feelings / people", "ex": "How do you deal with stress? I can't deal with him!", "pt": "Enfrentar, aguentar, lidar emocionalmente.", "color": "yellow"},
+      {"f": "handle + it (capacity)", "ex": "I can handle it. She handled it really well.", "pt": "Dar conta, ter controle, se sair bem.", "color": "sage"},
+      {"f": "handle + thing (in charge / hands)", "ex": "My mom handles the money. Handle with care.", "pt": "Ser responsável por, manusear.", "color": "peach"}
+    ],
+    "both": "<b>Sometimes both are possible</b><span>“deal with a problem” and “handle a problem” are both correct. The focus is different:</span><span><b>deal with</b> = you face it and do something about it.</span><span><b>handle</b> = you manage it, you are in control.</span>",
+    "never": "Never: <s>handle with the problem</s> <s>deal the problem</s>",
+    "hint": "<b>deal</b> is also a noun: <i>It's a deal!</i> (combinado) · <i>no big deal</i> (nada demais) · <i>a good deal</i> (um bom negócio)."
+  },
+
+  "situations": [
+    {"c": "Your boss gives you a big project. You feel confident.", "s": "“Don't worry, I can ___ it.”", "o": ["handle", "deal with"], "a": 0, "why": "Capacity + confidence → <b>I can handle it</b>."},
+    {"c": "You have 40 unread emails, but you are having lunch.", "s": "“I'll ___ them after lunch.”", "o": ["handle", "deal with"], "a": 1, "why": "A task you will do something about later → <b>deal with</b>."},
+    {"c": "Your friend's grandmother died last week.", "s": "“She's ___ a lot of sadness right now.”", "o": ["dealing with", "handling"], "a": 0, "why": "Difficult feelings → <b>deal with</b>."},
+    {"c": "A waiter talks about his job at a restaurant.", "s": "“At the end of the night, I ___ the money.”", "o": ["handle", "deal with"], "a": 0, "why": "His role, he is in charge of it → <b>handle</b>."},
+    {"c": "A manager talks to an employee after a difficult meeting.", "s": "“You ___ that angry client really well!”", "o": ["handled", "dealt"], "a": 0, "why": "How well someone did it → <b>handled … well</b>. (“dealt” is wrong here: it needs “with”.)"},
+    {"c": "Your roommate never cleans and plays loud music at 3 a.m.", "s": "“I can't ___ him anymore!”", "o": ["handle", "deal with"], "a": 1, "why": "A difficult person you have to put up with → <b>I can't deal with him</b>."},
+    {"c": "A sign on a box in the post office.", "s": "“Fragile! ___ with care.”", "o": ["Handle", "Deal"], "a": 0, "why": "Touching something with your hands → <b>Handle with care</b>."},
+    {"c": "Your new job has long hours and a lot of pressure. You are tired.", "s": "“It's too much to ___.”", "o": ["handle", "deal"], "a": 0, "why": "Capacity → <b>too much to handle</b>. (“too much to deal with” is OK too, but never “too much to deal”.)"}
+  ],
+
+  "textsTitle": "Dialogues and a blog post",
+  "textsTip": "Tip: is there a “with” after the gap? Is it about a task, feelings, capacity or being in charge?",
+  "texts": [
+    {"h": "The new job", "ctx": "Rafa started a job in a busy shop. His friend Jen calls him.", "W": ["deal", "deal with", "handle", "handles", "handled"], "turns": [
+      ["Jen", "How's the new job? Is it too much to [[handle]]?"],
+      ["Rafa", "No, I can [[handle]] it. But every day I have to [[deal with]] angry customers."],
+      ["Jen", "That sounds hard. Who [[handles]] the money in the shop?"],
+      ["Rafa", "My manager. Yesterday a customer shouted at me, and I [[handled]] it really well!"],
+      ["Jen", "Nice! If there's a big problem, call me. I'll help you [[deal with]] it."],
+      ["Rafa", "Thanks! It's a [[deal]]."]]},
+    {"h": "Exam week", "ctx": "Leo and Mia are students. They have exams next week.", "W": ["deal", "deal with", "handle", "handles", "handled"], "turns": [
+      ["Leo", "Three exams next week. I can't [[handle]] all this pressure!"],
+      ["Mia", "Relax, it's no big [[deal]]. How do you usually [[deal with]] stress?"],
+      ["Leo", "I play video games… for six hours."],
+      ["Mia", "Ha! That's not a good way to [[deal with/handle]] it. Let's make a study plan."],
+      ["Leo", "OK. You help me study, I buy the pizza. [[Deal]]?"]]},
+    {"h": "My first year in Canada", "ctx": "Ana writes a blog post about moving to another country.", "W": ["deal with", "dealt with", "handle", "handled"], "prose": "Moving to Canada was hard. In the first month, I had to [[deal with]] a lot of loneliness. My English was OK, so I could [[handle]] simple conversations, but phone calls were too much to [[handle]]. I also had to [[deal with]] a difficult landlord who never answered my messages. Now, after one year, I think I [[handled/dealt with]] the change pretty well!"}
+  ],
+
+  "errors": [
+    {"s": "I need to handle with this problem.", "ok": false, "fix": "I need to <b>handle</b> this problem. / I need to <b>deal with</b> this problem.", "why": "handle never takes “with” before the thing."},
+    {"s": "How do you deal with stress?", "ok": true, "why": "Feelings → deal with. Correct!"},
+    {"s": "I can't deal this situation.", "ok": false, "fix": "I can't <b>deal with</b> this situation. / I can't <b>handle</b> this situation.", "why": "The verb deal needs “with”."},
+    {"s": "Don't worry, I can handle it.", "ok": true, "why": "Capacity → handle. Correct!"},
+    {"s": "She handles with the money in our company.", "ok": false, "fix": "She <b>handles</b> the money in our company.", "why": "In charge → handle + the thing, no “with”."},
+    {"s": "The movie deals about friendship.", "ok": false, "fix": "The movie <b>deals with</b> friendship.", "why": "For the topic of a book or movie, we say deal with."},
+    {"s": "Wash your hands before you deal with food.", "ok": false, "fix": "Wash your hands before you <b>handle</b> food.", "why": "Touching with your hands → handle."},
+    {"s": "Be careful! Handle the box with care.", "ok": true, "why": "Here “with” goes with “care” (= carefully). Correct!"},
+    {"s": "It's too much to deal.", "ok": false, "fix": "It's too much to <b>handle</b>. / It's too much to <b>deal with</b>.", "why": "deal alone does not work here. Use handle, or deal with."}
+  ],
+
+  "skell": {
+    "steps": [
+      "Type <code>deal with</code>. Which words come after it? Write three. Are they nice things or difficult things?",
+      "Type <code>handle</code> and click <b>Word sketch</b>. Look at the words used with it. Do you see <i>well</i>, <i>badly</i>, <i>pressure</i>, <i>situation</i>?",
+      "Type <code>handled well</code>. Who handled what? Write two examples.",
+      "Type <code>handle with</code>. What word comes after <i>with</i>?",
+      "Write three sentences about you: something you can handle easily, something that is hard to deal with, and something you handled well."
+    ],
+    "notesPlaceholder": "deal with stress, deal with ...",
+    "mePlaceholder": "I can handle ... / It's hard to deal with ... / I handled ... well."
+  }
+}

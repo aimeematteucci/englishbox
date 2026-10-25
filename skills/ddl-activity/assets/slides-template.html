@@ -1,0 +1,126 @@
+<title>__TITLE__ Slides</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Inter+Tight:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=Oswald:wght@300;400&family=Patrick+Hand&display=swap">
+<style>
+/* Layout: 16:9 classroom deck scaled to the window, English Box look committed to one palette (green editorial + paper slides); click or arrow keys reveal steps, N shows teacher notes. */
+:root{
+  --green:#56886A; --deep:#2F6B47; --sage:#7FA98A; --cream:#F4EFE4; --paper:#EDECE8; --ink:#1E1E1E;
+  --lime:#C6F135; --star:#E8C832; --red:#C7505E; --room:#141a16;
+  --f-display:"Fraunces",Georgia,serif; --f-body:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Courier Prime","Courier New",monospace; --f-kicker:"Oswald","Arial Narrow",sans-serif; --f-hand:"Patrick Hand",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--room);color:var(--cream);font-family:var(--f-body);overflow:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stage{position:absolute;inset:0;overflow:hidden}
+.deck{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;padding:80px 110px;display:none;flex-direction:column;gap:34px;overflow:hidden;border-radius:6px}
+.slide.on{display:flex}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.g{background:var(--green);color:var(--cream)}
+.p{background:var(--paper);color:var(--ink)}
+.corner{position:absolute;top:34px;font-size:22px;line-height:1.12}
+.corner.l{left:44px}.corner.r{right:44px;text-align:right}
+.corner b{font-weight:700}
+.kick{font-family:var(--f-kicker);font-weight:300;text-transform:uppercase;letter-spacing:.14em;font-size:28px;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px;margin-top:30px}
+h1,h2{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:180px}
+h2{font-size:84px}
+h1 i,h2 i{font-style:italic}
+.p h2 i{color:var(--deep)}
+.big{font-size:40px;line-height:1.35;max-width:30ch}
+.hl{background:linear-gradient(transparent 55%,rgba(127,169,138,.75) 55%);padding:0 6px}
+.pill{background:var(--lime);color:var(--ink);border:4px solid var(--ink);border-radius:999px;padding:14px 34px;font-family:var(--f-mono);font-weight:700;font-size:34px;width:fit-content}
+.bubbles{display:flex;gap:40px;flex-wrap:wrap}
+.bub{background:#F4F2EC;color:var(--ink);border:4px solid var(--ink);border-radius:28px;padding:22px 36px;font-family:var(--f-hand);font-size:56px;position:relative}
+.bub small{display:block;font-family:var(--f-kicker);font-size:20px;letter-spacing:.1em}
+.conc{font-family:var(--f-mono);font-size:29px;display:grid;grid-template-columns:auto auto auto;justify-content:center;column-gap:18px;row-gap:12px;align-items:baseline;background:#F8F7F3;color:var(--ink);border:3px solid var(--ink);border-radius:18px;padding:30px 36px}
+.conc .l{text-align:right;white-space:nowrap}
+.conc .k{background:var(--lime);font-weight:700;padding:0 10px;border-radius:6px}
+.conc .r{white-space:nowrap}
+.conc .r u{text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--deep)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.box{border-radius:22px;padding:30px;color:var(--ink);display:flex;flex-direction:column;gap:12px;border:3px solid var(--ink)}
+.box .t{font-family:var(--f-display);font-size:46px;font-weight:600}
+.box .f{font-family:var(--f-mono);font-weight:700;font-size:32px}
+.box .e{font-size:28px}
+.box .pt{font-size:23px;opacity:.75}
+.b-can{background:var(--lime)}.b-know{background:var(--star)}.b-how{background:#A9CDB3}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.b-d{background:#F2C6A8}
+.sits{display:grid;gap:26px}
+.sits div{display:grid;grid-template-columns:1fr auto;column-gap:30px;row-gap:4px;align-items:baseline}
+.sits .c{grid-column:1/-1;font-size:26px;opacity:.7}
+.sits span:not(.c){font-family:var(--f-mono);font-size:36px}
+.sits b{font-family:var(--f-mono);font-size:30px;color:var(--deep)}
+.qs{display:grid;gap:26px;font-size:40px;margin:0;padding-left:50px}
+.qs li::marker{font-family:var(--f-kicker);color:var(--lime)}
+.ans{font-family:var(--f-mono);font-size:30px;color:var(--deep);display:block;margin-top:6px}
+.errs{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;font-family:var(--f-mono);font-size:38px}
+.errs div{display:flex;flex-direction:column;gap:4px}
+.errs s{color:var(--red);text-decoration-thickness:3px}
+.errs b{color:var(--deep)}
+.never{font-family:var(--f-mono);font-size:38px;color:#F7C9CF}
+.p .never{color:var(--red)}
+.steps-list{font-size:38px;display:grid;gap:22px;margin:0;padding-left:50px}
+.steps-list code{font-family:var(--f-mono);background:var(--lime);color:var(--ink);padding:0 10px;border-radius:6px;font-weight:700}
+.url{font-family:var(--f-mono);font-size:44px;background:var(--cream);color:var(--ink);padding:10px 26px;border-radius:12px;width:fit-content}
+.mt-auto{margin-top:auto}
+.small{font-size:26px;opacity:.85}
+.step{transition:opacity .25s}
+.step.hide{opacity:0;visibility:hidden}
+
+/* teacher notes */
+.notes{position:fixed;left:0;right:0;bottom:0;background:#0d120f;color:var(--cream);font-size:15px;line-height:1.5;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(14px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  max-height:38%;overflow:auto;border-top:1px solid #2c3a31;display:none;z-index:5}
+.notes.on{display:block}
+.notes b{font-family:var(--f-kicker);letter-spacing:.1em;text-transform:uppercase;font-weight:400;color:var(--lime)}
+.nav{position:fixed;right:max(16px,env(safe-area-inset-right,0px));top:calc(12px + env(safe-area-inset-top,0px));display:flex;gap:8px;z-index:6;align-items:center}
+.nav button{background:#26322b;color:var(--cream);border:1px solid #3a4a40;border-radius:999px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}
+.nav button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.nav .count{font-family:var(--f-kicker);letter-spacing:.1em;font-size:14px;color:#b8c4bc;min-width:56px;text-align:center}
+@media (prefers-reduced-motion:reduce){.step{transition:none}}
+</style>
+
+<div class="nav">
+  <button type="button" id="prev" aria-label="Previous slide">←</button>
+  <span class="count" id="count"></span>
+  <button type="button" id="next" aria-label="Next slide">→</button>
+  <button type="button" id="notesBtn" aria-pressed="false">Notes (N)</button>
+</div>
+
+<div class="stage"><div class="deck" id="deck">
+<!--__SLIDES__-->
+</div></div>
+
+<div class="notes" id="notes" aria-live="polite"></div>
+
+<script>
+(function(){
+const deck=document.getElementById('deck');const slides=[...deck.querySelectorAll('.slide')];
+const notes=document.getElementById('notes');const count=document.getElementById('count');const nb=document.getElementById('notesBtn');
+let i=0;
+function fit(){const s=Math.min(window.innerWidth/1600,window.innerHeight/900)*0.96;deck.style.transform='translate(-50%,-50%) scale('+s+')'}
+function show(n,fromBack){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  slides[i].querySelectorAll('.step').forEach(x=>x.classList.toggle('hide',!fromBack));
+  count.textContent=(i+1)+' / '+slides.length;notes.innerHTML='<b>Slide '+(i+1)+'</b> · '+(slides[i].dataset.notes||'');
+  try{location.hash='s'+(i+1)}catch(e){}}
+function next(){const h=slides[i].querySelector('.step.hide');if(h){h.classList.remove('hide');return}if(i<slides.length-1)show(i+1)}
+function prev(){const shown=[...slides[i].querySelectorAll('.step:not(.hide)')];if(shown.length){shown.pop().classList.add('hide');return}if(i>0)show(i-1,true)}
+document.getElementById('next').onclick=next;document.getElementById('prev').onclick=prev;
+nb.onclick=()=>{const on=notes.classList.toggle('on');nb.setAttribute('aria-pressed',String(on))};
+document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next()}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==='n'||e.key==='N')nb.click()});
+deck.addEventListener('click',e=>{if(e.target.closest('a'))return;next()});
+window.addEventListener('resize',fit);fit();
+const m=/^#s(\d+)$/.exec(location.hash);show(m?+m[1]-1:0);
+})();
+</script>

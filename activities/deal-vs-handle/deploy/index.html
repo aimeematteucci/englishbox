@@ -99,7 +99,6 @@ section h2{font-size:clamp(30px,5vw,42px)}
 .sit{display:grid;gap:10px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .sit .ctx{color:var(--muted);font-size:15px}
 .sit .s{font-family:var(--f-mono);font-size:17px}
-.legend,.formula{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .both{border:1.5px dashed var(--accent);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
 .cards{display:grid;gap:10px}
 .card{display:grid;gap:10px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
@@ -165,6 +164,8 @@ footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display
   .fb{animation:in .25s ease-out}
   @keyframes in{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
 }
+[hidden]{display:none!important}
+.legend,.formula{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 </style>
 </head>
 <body>
