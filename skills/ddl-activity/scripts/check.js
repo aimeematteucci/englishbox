@@ -22,9 +22,19 @@ const shots = process.argv[3] ? path.resolve(process.argv[3]) : null;
       gaps: document.querySelectorAll('select.gap').length,
       errs: document.querySelectorAll('#errlist .err').length,
     }));
+    if (name === 'desktop') {
+      // every concordance line must be readable in full on a desktop screen
+      const cut = await p.evaluate(() => { const out = []; const btn = document.querySelector('#filters .tb:last-child'); if (btn) btn.click();
+        document.querySelectorAll('#conc .l, #conc .r').forEach(c => { if (c.scrollWidth > c.clientWidth + 1) out.push((c.classList.contains('l') ? 'left: ' : 'right: ') + c.textContent.trim()); });
+        const f = document.querySelector('#filters .tb'); if (f) f.click(); return out; });
+      cut.forEach(t => { bad++; console.log('TRUNCATED concordance', t); });
+    }
     if (info.sw > w) { bad++; console.log(`OVERFLOW activity ${name}: page is ${info.sw}px wide`); }
     if (name === 'desktop') console.log('activity:', JSON.stringify(info));
-    if (shots) await p.screenshot({path: path.join(shots, `activity-${name}.png`), fullPage: true});
+    if (shots && name === 'phone') await p.screenshot({path: path.join(shots, 'activity-phone-top.png')});
+    if (shots && name === 'desktop') for (const id of ['start', 'notice', 'classify', 'rule', 'context', 'errors', 'explore']) {
+      const sec = await p.$('#' + id); if (sec) await sec.screenshot({path: path.join(shots, `activity-${id}.png`)});
+    }
   }
   const sl = path.join(dir, 'slides.html');
   if (fs.existsSync(sl)) {

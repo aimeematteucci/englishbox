@@ -38,6 +38,8 @@ h1 i,h2 i{font-style:italic}
 .pill{background:var(--lime);color:var(--ink);border:4px solid var(--ink);border-radius:999px;padding:14px 34px;font-family:var(--f-mono);font-weight:700;font-size:34px;width:fit-content}
 .bubbles{display:flex;gap:40px;flex-wrap:wrap}
 .bub{background:#F4F2EC;color:var(--ink);border:4px solid var(--ink);border-radius:28px;padding:22px 36px;font-family:var(--f-hand);font-size:56px;position:relative}
+.bubbles.compact{gap:24px}
+.bubbles.compact .bub{font-size:40px;padding:16px 26px}
 .bub small{display:block;font-family:var(--f-kicker);font-size:20px;letter-spacing:.1em}
 .conc{font-family:var(--f-mono);font-size:29px;display:grid;grid-template-columns:auto auto auto;justify-content:center;column-gap:18px;row-gap:12px;align-items:baseline;background:#F8F7F3;color:var(--ink);border:3px solid var(--ink);border-radius:18px;padding:30px 36px}
 .conc .l{text-align:right;white-space:nowrap}
@@ -91,13 +93,12 @@ h1 i,h2 i{font-style:italic}
 
 <div class="nav">
   <button type="button" id="prev" aria-label="Previous slide">←</button>
-  <span class="count" id="count">1 / 12</span>
+  <span class="count" id="count"></span>
   <button type="button" id="next" aria-label="Next slide">→</button>
   <button type="button" id="notesBtn" aria-pressed="false">Notes (N)</button>
 </div>
 
 <div class="stage"><div class="deck" id="deck">
-
 <!-- 1 -->
 <section class="slide g" data-notes="Apresente o tema sem explicar a regra. Diga: 'In Portuguese we say lidar com for both. Today you will discover when English uses each one.'">
   <div class="corner l">@aimee.<i>matteucci</i><br><b>English Box</b></div>

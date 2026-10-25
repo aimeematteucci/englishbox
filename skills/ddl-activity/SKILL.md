@@ -55,7 +55,7 @@ python3 <skill>/scripts/build.py content.json --slides content.slides.html --out
 node <skill>/scripts/check.js <repo>/activities/<slug> <scratchpad>/shots   # needs Playwright
 ```
 
-`build.py` validates the content first (every answer present, one correct option per question, gap answers in their word lists, colors valid) and writes nothing if something is wrong. Fix what it reports. `check.js` loads the pages and fails on script errors, horizontal overflow on a phone, or text spilling out of a slide. Look at one or two screenshots (the activity and the concordance slides) before showing the teacher. If `check.js` can't run (no Playwright), say so.
+`build.py` validates the content first (every answer present, one correct option per question, gap answers in their word lists, colors valid) and writes nothing if something is wrong. Fix what it reports. `check.js` loads the pages and fails on script errors, horizontal overflow on a phone, or text spilling out of a slide. It also fails on concordance lines cut off with “…”. Then look at the section screenshots it saves (`activity-notice.png`, `activity-rule.png`, …) and the concordance and rule slides, checking that formulas match their examples, before showing the teacher. If `check.js` can't run (no Playwright), say so.
 
 Output folder:
 ```

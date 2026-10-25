@@ -19,7 +19,7 @@ One Portuguese sentence (`pt`, key word in `<i>`) that triggers the interference
 - `k` is the word exactly as written (`can't`, `handled`, `Deals`); `w` groups it under its key id.
 - Make the **right side start with the signal** (with / a verb / an object) so “sort by next word” groups them. Put the collocates you want noticed **around** the key word (can, too much, well, tomorrow, stress).
 - Everyday, teen-and-adult-friendly topics: school, work, family, phones, football, travel, food. Brazilian touches are welcome (Neymar, reais, Rio). Vary subjects (I, she, my mom, nurses, the government).
-- Length: A2 lines under ~12 words total; B1 can be longer. A left context longer than ~40 characters gets cut on screen, so keep the important word close to the key.
+- Length: A2 lines under ~12 words total; B1 can be longer. On a desktop screen each side shows about **38 characters**; longer text is cut with “…”. Keep left and right sides under ~36 characters and put the important words next to the key. `check.js` fails on any cut line.
 - A line can start a sentence: use `"l": ""`.
 
 ## Noticing questions (`notice`)
@@ -40,7 +40,7 @@ Not every pair has a visible grammar signal (make/do, say/tell partly, borrow/le
 - `hint`: the noun / other meanings, or a frequency note you can stand behind.
 
 ## Situations (`situations`)
-6–8 mini-contexts in which **the situation decides**, not the grammar: a one-line context `c`, a sentence `s` with `___`, two options `o` (same form so grammar doesn't give it away, unless the point is grammar), answer index `a`, and `why` naming the context in bold. Cover every context at least once and include one capacity/emotion contrast that is obviously different.
+6–8 mini-contexts in which **the situation decides**, not the grammar: a one-line context `c`, a sentence `s` with `___`, two options `o` (same form so grammar doesn't give it away, unless the point is grammar), answer index `a`, and `why` naming the context in bold. When grammar and meaning can't be separated (borrow/lend: who gives is also who is the subject), a situation may be decided by grammar too; make the `why` name the context anyway. Cover every context at least once and include one capacity/emotion contrast that is obviously different.
 
 ## Dialogues and a text (`texts`)
 Two short dialogues (5–6 turns, named people, realistic: a job, exams, a trip, a shop) and one prose text (a blog post, a profile, an ad). `W` is the dropdown list, and include inflected forms as distractors. `textsTitle` is the h2 above them (e.g. “Dialogues and a blog post”). Write gaps as `[[answer]]`; if both are natural, `[[a/b]]`. Make most gaps decidable by context or by a visible signal (a following *with*), and keep accept-both gaps rare. `textsTip` is the hint shown after a wrong check.

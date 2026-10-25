@@ -170,36 +170,34 @@ footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display
 </head>
 <body>
 
+
 <header class="band">
   <div class="wrap">
     <div class="corner"><span>@aimee.<i>matteucci</i><br><b>English Box</b></span><span style="text-align:right">Data-Driven<br><b>Learning</b></span></div>
-    <h1>Deal <i>or</i> handle?</h1>
-    <p class="lede">In Portuguese, both are “lidar com”. In English, the context decides. Look at real examples, find the contexts, and make the rule yourself.</p>
-    <div class="meta"><span>Level B1</span><span>About 50 minutes</span><span>6 steps</span></div>
+    <h1 id="h1"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="meta" id="meta"></div>
   </div>
 </header>
 
 <main>
-<div class="wrap">
+<div class="wrap" id="app">
 
   <section id="start">
     <div class="kicker">Before you start <span class="time">2 min</span></div>
     <h2>How do you say it in English?</h2>
-    <p class="say">“Eu não sei <i>lidar com</i> isso.”</p>
+    <p class="say" id="warm-pt"></p>
     <p class="task">Choose your answer. Don't worry if you are not sure. You will check it at the end.</p>
     <div class="opts" id="warm"></div>
     <p class="hint" id="warm-note" hidden>Saved. Keep going.</p>
   </section>
 
   <section id="notice">
-    <div class="kicker">Step 1 · Look at the data <span class="time">10 min</span></div>
+    <div class="kicker">Step 1 · Look at the data <span class="time" data-t="notice"></span></div>
     <h2>Concordance lines</h2>
     <p class="task">These lines come from patterns in real English texts. The <b>key word</b> is in the middle. Look at the words <b>after</b> it and the words <b>around</b> it. Use the buttons to sort the lines.</p>
     <div class="toolbar" role="group" aria-label="Concordance options">
-      <span class="lbl">Show</span>
-      <button class="tb" data-f="deal" aria-pressed="true">deal</button>
-      <button class="tb" data-f="handle" aria-pressed="false">handle</button>
-      <button class="tb" data-f="all" aria-pressed="false">both</button>
+      <span class="lbl">Show</span><span id="filters" style="display:contents"></span>
       <span class="lbl" style="margin-left:10px">Sort by</span>
       <button class="tb" data-s="orig" aria-pressed="true">original</button>
       <button class="tb" data-s="next" aria-pressed="false">next word</button>
@@ -211,56 +209,43 @@ footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display
   </section>
 
   <section id="classify">
-    <div class="kicker">Step 2 · Find the context <span class="time">10 min</span></div>
-    <h2>Four contexts</h2>
-    <p class="task">Read each sentence. What is the situation? Tap a context.</p>
-    <div class="legend">
-      <div class="c-can"><b>A task or a problem</b>You do something about it, now or later.</div>
-      <div class="c-know"><b>Feelings and people</b>Difficult emotions or difficult people.</div>
-      <div class="c-how"><b>Capacity</b>Can I manage it? How well did I do it?</div>
-      <div class="c-d"><b>In charge, or hands</b>Your job or role, or you touch it.</div>
-    </div>
+    <div class="kicker">Step 2 · <span id="cl-kicker">Sort the lines</span> <span class="time" data-t="classify"></span></div>
+    <h2 id="cl-title"></h2>
+    <p class="task" id="cl-task"></p>
+    <div class="legend" id="legend"></div>
     <p class="score" id="cl-score"></p>
     <div class="cards" id="cards"></div>
-    <div class="panel" id="cl-after"></div>
+    <div class="panel" id="cl-after" hidden></div>
   </section>
 
   <section id="rule">
-    <div class="kicker">Step 3 · Make the rule <span class="time">5 min</span></div>
+    <div class="kicker">Step 3 · Make the rule <span class="time" data-t="rule"></span></div>
     <h2>Your rule</h2>
     <p class="task">Use what you saw in Steps 1 and 2. Complete the rule.</p>
     <div class="panel rule" id="rulebox"></div>
     <div id="formula" hidden class="rule">
-      <div class="formula">
-        <div class="c-can"><div class="f">deal with + task / problem</div><div class="ex">I'll deal with the emails tomorrow.</div><div class="pt">Resolver, tratar de, cuidar de.</div></div>
-        <div class="c-know"><div class="f">deal with + feelings / people</div><div class="ex">How do you deal with stress? I can't deal with him!</div><div class="pt">Enfrentar, aguentar, lidar emocionalmente.</div></div>
-        <div class="c-how"><div class="f">handle + it (capacity)</div><div class="ex">I can handle it. She handled it really well.</div><div class="pt">Dar conta, ter controle, se sair bem.</div></div>
-        <div class="c-d"><div class="f">handle + thing (in charge / hands)</div><div class="ex">My mom handles the money. Handle with care.</div><div class="pt">Ser responsável por, manusear.</div></div>
-      </div>
-      <div class="both">
-        <b>Sometimes both are possible</b>
-        <span>“deal with a problem” and “handle a problem” are both correct. The focus is different:</span>
-        <span><b>deal with</b> = you face it and do something about it.</span>
-        <span><b>handle</b> = you manage it, you are in control.</span>
-      </div>
-      <p class="never">Never: <s>handle with the problem</s> <s>deal the problem</s></p>
-      <p class="hint"><b>deal</b> is also a noun: <i>It's a deal!</i> (combinado) · <i>no big deal</i> (nada demais) · <i>a good deal</i> (um bom negócio).</p>
+      <div class="formula" id="formula-boxes"></div>
+      <div class="both" id="both" hidden></div>
+      <p class="never" id="never" hidden></p>
+      <p class="hint" id="rule-hint" hidden></p>
     </div>
   </section>
 
   <section id="context">
-    <div class="kicker">Step 4 · Use it in context <span class="time">12 min</span></div>
-    <h2>Read the situation</h2>
-    <p class="task">Read the situation. Which one fits the context better?</p>
-    <p class="score" id="sit-score"></p>
-    <div class="cards" id="sits"></div>
-    <h2 style="margin-top:22px">Dialogues and a blog post</h2>
-    <p class="task">Choose the right words for each gap. Look at the context. Then press <b>Check</b>.</p>
+    <div class="kicker">Step 4 · Use it in context <span class="time" data-t="context"></span></div>
+    <div id="sit-block" style="display:grid;gap:18px">
+      <h2>Read the situation</h2>
+      <p class="task">Read the situation. Which one fits the context better?</p>
+      <p class="score" id="sit-score"></p>
+      <div class="cards" id="sits"></div>
+    </div>
+    <h2 id="texts-title" style="margin-top:22px"></h2>
+    <p class="task">Choose the right word for each gap. Look at the context. Then press <b>Check</b>.</p>
     <div id="dialogues" style="display:grid;gap:22px"></div>
   </section>
 
   <section id="errors">
-    <div class="kicker">Step 5 · Find the mistakes <span class="time">8 min</span></div>
+    <div class="kicker">Step 5 · Find the mistakes <span class="time" data-t="errors"></span></div>
     <h2>Correct or wrong?</h2>
     <p class="task">Brazilian students often say these sentences. Is the English correct?</p>
     <p class="score" id="er-score"></p>
@@ -268,27 +253,21 @@ footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display
   </section>
 
   <section id="explore">
-    <div class="kicker">Step 6 · Be the researcher <span class="time">5 min + homework</span></div>
+    <div class="kicker">Step 6 · Be the researcher <span class="time" data-t="explore"></span></div>
     <h2>Search real English yourself</h2>
     <p class="task"><b>SkELL</b> is a free search tool for English learners. It shows you real sentences from the internet. Open it in a new tab and follow the steps.</p>
     <a class="skell-link" href="https://skell.sketchengine.eu/" target="_blank" rel="noopener">Open SkELL ↗</a>
-    <ol class="steps">
-      <li>Type <code>deal with</code>. Which words come after it? Write three. Are they nice things or difficult things?</li>
-      <li>Type <code>handle</code> and click <b>Word sketch</b>. Look at the words used with it. Do you see <i>well</i>, <i>badly</i>, <i>pressure</i>, <i>situation</i>?</li>
-      <li>Type <code>handled well</code>. Who handled what? Write two examples.</li>
-      <li>Type <code>handle with</code>. What word comes after <i>with</i>?</li>
-      <li>Write three sentences about you: something you can handle easily, something that is hard to deal with, and something you handled well.</li>
-    </ol>
+    <ol class="steps" id="sk-steps"></ol>
     <div class="panel" style="display:grid;gap:14px">
-      <div class="field"><label class="tl" for="sk-verbs">My notes from SkELL</label><textarea id="sk-verbs" placeholder="deal with stress, deal with ..."></textarea></div>
-      <div class="field"><label class="tl" for="sk-me">My three sentences</label><textarea id="sk-me" placeholder="I can handle ... / It's hard to deal with ... / I handled ... well."></textarea></div>
+      <div class="field"><label class="tl" for="sk-notes">My notes from SkELL</label><textarea id="sk-notes"></textarea></div>
+      <div class="field"><label class="tl" for="sk-me">My sentences</label><textarea id="sk-me"></textarea></div>
       <p class="hint">Your notes stay on this device. Copy them to your notebook or share them with your teacher.</p>
     </div>
   </section>
 
   <section id="end">
     <div class="kicker">Back to the start</div>
-    <h2>“Eu não sei lidar com isso.”</h2>
+    <h2 id="end-pt"></h2>
     <p class="task" id="end-text">Answer the first question at the top of the page, then come back here.</p>
   </section>
 
@@ -296,213 +275,131 @@ footer .wrap{padding-block:24px 40px;font-size:13.5px;color:var(--muted);display
 </main>
 
 <footer><div class="wrap">
-  <span>English Box · Data-Driven Learning activity · Level B1</span>
-  <span>Method based on guided discovery with concordance lines (Johns, 1991; Yaylali, Banat &amp; Novikov, 2021) and clear step-by-step instructions for independent DDL (Zakiyah, Susylowati &amp; Rohmah, 2026). Example lines adapted for B1 from common corpus patterns.</span>
+  <span id="foot-level"></span>
+  <span id="foot-src"></span>
 </div></footer>
 
 <script>
-(function(){
+const DATA = {"slug": "deal-vs-handle", "title": "Deal or Handle?", "h1": "Deal <i>or<\/i> handle?", "lede": "In Portuguese, both are “lidar com”. In English, the context decides. Look at real examples, find the contexts, and make the rule yourself.", "level": "B1", "duration": "About 50 minutes", "times": {"classify": "10 min"}, "warmup": {"pt": "“Eu não sei <i>lidar com<\/i> isso.”", "options": [{"t": "I don't know handle with it.", "msg": "You chose “I don't know handle with it.” Now you know why it is wrong: handle never takes “with”, and “não sei” here means <b>can't<\/b>. Say “I can't deal with it” or “I can't handle it.”"}, {"t": "I can't deal with it.", "msg": "You chose “I can't deal with it.” Correct! Use it when the problem is about feelings or a difficult person: “My ex keeps calling me. I can't deal with it.”"}, {"t": "I can't handle it.", "msg": "You chose “I can't handle it.” Correct! Use it when it is about capacity, when something is too much for you: “Three jobs? I can't handle it.”"}], "close": "Both B and C are correct. The context decides. <b>Now tell a partner one thing you can handle easily and one thing that is hard for you to deal with.<\/b>"}, "concordance": {"keys": [{"id": "deal", "label": "deal"}, {"id": "handle", "label": "handle"}], "lines": [{"l": "I'm busy now. I'll", "k": "deal", "r": "with the emails tomorrow.", "w": "deal"}, {"l": "Who's going to", "k": "deal", "r": "with the broken window?", "w": "deal"}, {"l": "We need to", "k": "deal", "r": "with this problem before Monday.", "w": "deal"}, {"l": "How do you", "k": "deal", "r": "with stress before an exam?", "w": "deal"}, {"l": "After his dog died, he had to", "k": "deal", "r": "with a lot of sadness.", "w": "deal"}, {"l": "I can't", "k": "deal", "r": "with my neighbor. He's so rude!", "w": "deal"}, {"l": "Nurses", "k": "deal", "r": "with sick people every day.", "w": "deal"}, {"l": "The movie", "k": "deals", "r": "with family and friendship.", "w": "deal"}, {"l": "OK, it's a", "k": "deal", "r": ". I cook, you wash the dishes.", "w": "deal"}, {"l": "Relax, it's no big", "k": "deal", "r": ".", "w": "deal"}, {"l": "Don't worry about the project. I can", "k": "handle", "r": "it.", "w": "handle"}, {"l": "Five meetings? That's too much to", "k": "handle", "r": ".", "w": "handle"}, {"l": "He couldn't", "k": "handle", "r": "the pressure, so he quit.", "w": "handle"}, {"l": "She", "k": "handled", "r": "the angry customer really well.", "w": "handle"}, {"l": "The government", "k": "handled", "r": "the crisis badly.", "w": "handle"}, {"l": "In our family, my mom", "k": "handles", "r": "the money.", "w": "handle"}, {"l": "Our team", "k": "handles", "r": "all the online orders.", "w": "handle"}, {"l": "Please", "k": "handle", "r": "the glasses with care.", "w": "handle"}, {"l": "Wash your hands before you", "k": "handle", "r": "food.", "w": "handle"}, {"l": "I'm not sure how to", "k": "handle", "r": "my new boss.", "w": "handle"}]}, "notice": [{"q": "Show “deal”. When deal is a verb, what word comes right after it?", "opts": [{"t": "with", "ok": true}, {"t": "the thing directly (deal the problem)"}, {"t": "about"}], "ok": "Yes! The verb is always <b>deal with<\/b> + something.", "no": "Look again. Sort by “next word” to help you."}, {"q": "Show “handle”. What comes after handle?", "opts": [{"t": "with + the thing"}, {"t": "the thing directly: it, the pressure, the money", "ok": true}], "ok": "Right! <b>handle + it / the pressure<\/b>. No “with”. (In “handle the glasses with care”, <i>with<\/i> goes with <i>care<\/i>.)", "no": "Look again. Do you see “handle with the problem”?"}, {"q": "Show “deal”. Look at the words after “deal with”: the emails, the broken window, stress, sadness, my neighbor. These are…", "opts": [{"t": "things you like"}, {"t": "things you touch"}, {"t": "tasks, problems, feelings and people you need to face", "ok": true}], "ok": "Exactly. We <b>deal with<\/b> things that need our attention, and often they are difficult or unpleasant.", "no": "Not quite. Are emails, sadness and a rude neighbor nice things?"}, {"q": "Show “handle”. Look at the words around it: can, couldn't, too much, well, badly. What do they tell us?", "opts": [{"t": "handle is about capacity: can you manage it? how well?", "ok": true}, {"t": "handle is about feelings"}, {"t": "handle is about the future"}], "ok": "Yes! <b>handle<\/b> often talks about <b>capacity<\/b> and <b>performance<\/b>: I can handle it, she handled it well.", "no": "Look at can / couldn't / too much / well / badly again. What do these words measure?"}, {"q": "Show “deal”. Find “it's a deal” and “no big deal”. Here, deal is…", "opts": [{"t": "a verb"}, {"t": "a noun: an agreement, or something important", "ok": true}], "ok": "Right. <b>It's a deal!<\/b> = combinado. <b>No big deal<\/b> = nada demais.", "no": "There is no “with” here, and there is “a” before deal. What does that tell you?"}], "classify": {"kicker": "Find the context", "title": "Four contexts", "task": "Read each sentence. What is the situation? Tap a context.", "groups": [{"id": "task", "title": "A task or a problem", "chip": "Task / problem", "desc": "You do something about it, now or later.", "color": "lime"}, {"id": "feel", "title": "Feelings and people", "chip": "Feelings / people", "desc": "Difficult emotions or difficult people.", "color": "yellow"}, {"id": "cap", "title": "Capacity", "chip": "Capacity", "desc": "Can I manage it? How well did I do it?", "color": "sage"}, {"id": "hand", "title": "In charge, or hands", "chip": "In charge / hands", "desc": "Your job or role, or you touch it.", "color": "peach"}], "items": [{"s": "I'll <mark>deal with<\/mark> the emails tomorrow.", "a": "task"}, {"s": "How do you <mark>deal with<\/mark> stress before an exam?", "a": "feel"}, {"s": "Don't worry about the project. I can <mark>handle<\/mark> it.", "a": "cap"}, {"s": "In our family, my mom <mark>handles<\/mark> the money.", "a": "hand"}, {"s": "I can't <mark>deal with<\/mark> my neighbor. He's so rude!", "a": "feel"}, {"s": "Who's going to <mark>deal with<\/mark> the broken window?", "a": "task"}, {"s": "She <mark>handled<\/mark> the angry customer really well.", "a": "cap"}, {"s": "Wash your hands before you <mark>handle<\/mark> food.", "a": "hand"}, {"s": "He couldn't <mark>handle<\/mark> the pressure, so he quit.", "a": "cap"}, {"s": "Nurses <mark>deal with<\/mark> sick and scared people every day.", "a": "feel"}], "after": {"q": "Now look at your four groups. Which verb do you see in each one?", "opts": [{"t": "Task and Feelings → handle · Capacity and In charge → deal with"}, {"t": "Task and Feelings → deal with · Capacity and In charge → handle", "ok": true}, {"t": "All four groups use both verbs"}], "ok": "Yes! The <b>context<\/b> helps you choose: tasks, feelings and difficult people → <b>deal with<\/b>. Capacity, being in charge, hands → <b>handle<\/b>.", "no": "Look at the underlined words in each group again."}}, "rule": {"lines": [{"pre": "After the verb deal, we need", "opts": ["with", "nothing"], "a": "with", "post": "(deal with stress)."}, {"pre": "After handle, we need", "opts": ["nothing", "with"], "a": "nothing", "post": "(handle the pressure)."}, {"pre": "For a task, a problem, a feeling or a difficult person, we usually use", "opts": ["deal with", "handle"], "a": "deal with", "post": "."}, {"pre": "For capacity (I can / can't, too much) or how well someone did something, we usually use", "opts": ["handle", "deal with"], "a": "handle", "post": "."}, {"pre": "For your job or role, or for touching something with your hands, we use", "opts": ["handle", "deal with"], "a": "handle", "post": "."}], "boxes": [{"f": "deal with + task / problem", "ex": "I'll deal with the emails tomorrow.", "pt": "Resolver, tratar de, cuidar de.", "color": "lime"}, {"f": "deal with + feelings / people", "ex": "How do you deal with stress? I can't deal with him!", "pt": "Enfrentar, aguentar, lidar emocionalmente.", "color": "yellow"}, {"f": "handle + it (capacity)", "ex": "I can handle it. She handled it really well.", "pt": "Dar conta, ter controle, se sair bem.", "color": "sage"}, {"f": "handle + thing (in charge / hands)", "ex": "My mom handles the money. Handle with care.", "pt": "Ser responsável por, manusear.", "color": "peach"}], "both": "<b>Sometimes both are possible<\/b><span>“deal with a problem” and “handle a problem” are both correct. The focus is different:<\/span><span><b>deal with<\/b> = you face it and do something about it.<\/span><span><b>handle<\/b> = you manage it, you are in control.<\/span>", "never": "Never: <s>handle with the problem<\/s> <s>deal the problem<\/s>", "hint": "<b>deal<\/b> is also a noun: <i>It's a deal!<\/i> (combinado) · <i>no big deal<\/i> (nada demais) · <i>a good deal<\/i> (um bom negócio)."}, "situations": [{"c": "Your boss gives you a big project. You feel confident.", "s": "“Don't worry, I can ___ it.”", "o": ["handle", "deal with"], "a": 0, "why": "Capacity + confidence → <b>I can handle it<\/b>."}, {"c": "You have 40 unread emails, but you are having lunch.", "s": "“I'll ___ them after lunch.”", "o": ["handle", "deal with"], "a": 1, "why": "A task you will do something about later → <b>deal with<\/b>."}, {"c": "Your friend's grandmother died last week.", "s": "“She's ___ a lot of sadness right now.”", "o": ["dealing with", "handling"], "a": 0, "why": "Difficult feelings → <b>deal with<\/b>."}, {"c": "A waiter talks about his job at a restaurant.", "s": "“At the end of the night, I ___ the money.”", "o": ["handle", "deal with"], "a": 0, "why": "His role, he is in charge of it → <b>handle<\/b>."}, {"c": "A manager talks to an employee after a difficult meeting.", "s": "“You ___ that angry client really well!”", "o": ["handled", "dealt"], "a": 0, "why": "How well someone did it → <b>handled … well<\/b>. (“dealt” is wrong here: it needs “with”.)"}, {"c": "Your roommate never cleans and plays loud music at 3 a.m.", "s": "“I can't ___ him anymore!”", "o": ["handle", "deal with"], "a": 1, "why": "A difficult person you have to put up with → <b>I can't deal with him<\/b>."}, {"c": "A sign on a box in the post office.", "s": "“Fragile! ___ with care.”", "o": ["Handle", "Deal"], "a": 0, "why": "Touching something with your hands → <b>Handle with care<\/b>."}, {"c": "Your new job has long hours and a lot of pressure. You are tired.", "s": "“It's too much to ___.”", "o": ["handle", "deal"], "a": 0, "why": "Capacity → <b>too much to handle<\/b>. (“too much to deal with” is OK too, but never “too much to deal”.)"}], "textsTitle": "Dialogues and a blog post", "textsTip": "Tip: is there a “with” after the gap? Is it about a task, feelings, capacity or being in charge?", "texts": [{"h": "The new job", "ctx": "Rafa started a job in a busy shop. His friend Jen calls him.", "W": ["deal", "deal with", "handle", "handles", "handled"], "turns": [["Jen", "How's the new job? Is it too much to [[handle]]?"], ["Rafa", "No, I can [[handle]] it. But every day I have to [[deal with]] angry customers."], ["Jen", "That sounds hard. Who [[handles]] the money in the shop?"], ["Rafa", "My manager. Yesterday a customer shouted at me, and I [[handled]] it really well!"], ["Jen", "Nice! If there's a big problem, call me. I'll help you [[deal with]] it."], ["Rafa", "Thanks! It's a [[deal]]."]]}, {"h": "Exam week", "ctx": "Leo and Mia are students. They have exams next week.", "W": ["deal", "deal with", "handle", "handles", "handled"], "turns": [["Leo", "Three exams next week. I can't [[handle]] all this pressure!"], ["Mia", "Relax, it's no big [[deal]]. How do you usually [[deal with]] stress?"], ["Leo", "I play video games… for six hours."], ["Mia", "Ha! That's not a good way to [[deal with/handle]] it. Let's make a study plan."], ["Leo", "OK. You help me study, I buy the pizza. [[Deal]]?"]]}, {"h": "My first year in Canada", "ctx": "Ana writes a blog post about moving to another country.", "W": ["deal with", "dealt with", "handle", "handled"], "prose": "Moving to Canada was hard. In the first month, I had to [[deal with]] a lot of loneliness. My English was OK, so I could [[handle]] simple conversations, but phone calls were too much to [[handle]]. I also had to [[deal with]] a difficult landlord who never answered my messages. Now, after one year, I think I [[handled/dealt with]] the change pretty well!"}], "errors": [{"s": "I need to handle with this problem.", "ok": false, "fix": "I need to <b>handle<\/b> this problem. / I need to <b>deal with<\/b> this problem.", "why": "handle never takes “with” before the thing."}, {"s": "How do you deal with stress?", "ok": true, "why": "Feelings → deal with. Correct!"}, {"s": "I can't deal this situation.", "ok": false, "fix": "I can't <b>deal with<\/b> this situation. / I can't <b>handle<\/b> this situation.", "why": "The verb deal needs “with”."}, {"s": "Don't worry, I can handle it.", "ok": true, "why": "Capacity → handle. Correct!"}, {"s": "She handles with the money in our company.", "ok": false, "fix": "She <b>handles<\/b> the money in our company.", "why": "In charge → handle + the thing, no “with”."}, {"s": "The movie deals about friendship.", "ok": false, "fix": "The movie <b>deals with<\/b> friendship.", "why": "For the topic of a book or movie, we say deal with."}, {"s": "Wash your hands before you deal with food.", "ok": false, "fix": "Wash your hands before you <b>handle<\/b> food.", "why": "Touching with your hands → handle."}, {"s": "Be careful! Handle the box with care.", "ok": true, "why": "Here “with” goes with “care” (= carefully). Correct!"}, {"s": "It's too much to deal.", "ok": false, "fix": "It's too much to <b>handle<\/b>. / It's too much to <b>deal with<\/b>.", "why": "deal alone does not work here. Use handle, or deal with."}], "skell": {"steps": ["Type <code>deal with<\/code>. Which words come after it? Write three. Are they nice things or difficult things?", "Type <code>handle<\/code> and click <b>Word sketch<\/b>. Look at the words used with it. Do you see <i>well<\/i>, <i>badly<\/i>, <i>pressure<\/i>, <i>situation<\/i>?", "Type <code>handled well<\/code>. Who handled what? Write two examples.", "Type <code>handle with<\/code>. What word comes after <i>with<\/i>?", "Write three sentences about you: something you can handle easily, something that is hard to deal with, and something you handled well."], "notesPlaceholder": "deal with stress, deal with ...", "mePlaceholder": "I can handle ... / It's hard to deal with ... / I handled ... well."}};
+(function(D){
 const $=s=>document.querySelector(s);
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
-const store={get(k){try{return localStorage.getItem('dvh-'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem('dvh-'+k,v)}catch(e){}}};
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+const store={get(k){try{return localStorage.getItem(D.slug+'-'+k)}catch(e){return null}},set(k,v){try{localStorage.setItem(D.slug+'-'+k,v)}catch(e){}}};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const COLOR={lime:'c-can',yellow:'c-know',sage:'c-how',peach:'c-d'};
+const T=Object.assign({notice:'10 min',classify:'8 min',rule:'5 min',context:'12 min',errors:'8 min',explore:'5 min + homework'},D.times||{});
+
+/* ---------- header / footer ---------- */
+$('#h1').innerHTML=D.h1;$('#lede').innerHTML=D.lede;
+$('#meta').innerHTML=['Level '+D.level,D.duration||'About 50 minutes','6 steps'].map(x=>'<span>'+esc(x)+'</span>').join('');
+document.querySelectorAll('[data-t]').forEach(s=>s.textContent=T[s.dataset.t]);
+$('#foot-level').textContent='English Box · Data-Driven Learning activity · Level '+D.level;
+$('#foot-src').innerHTML='Method based on guided discovery with concordance lines (Johns, 1991; Yaylali, Banat &amp; Novikov, 2021) and clear step-by-step instructions for independent DDL (Zakiyah, Susylowati &amp; Rohmah, 2026). Example lines adapted for '+esc(D.level)+' from common corpus patterns.';
 
 /* ---------- warm-up ---------- */
-const warmOpts=[{t:"I don't know handle with it."},{t:"I can't deal with it."},{t:"I can't handle it."}];
-let warmChoice=store.get('warm');
-const warm=$('#warm');
-warmOpts.forEach((o,i)=>{const b=el('button','opt',esc(o.t));b.type='button';b.onclick=()=>{warmChoice=String(i);store.set('warm',warmChoice);paintWarm();renderEnd()};warm.append(b)});
-function paintWarm(){[...warm.children].forEach((b,i)=>{const on=warmChoice===String(i);b.setAttribute('aria-pressed',String(on));b.style.background=on?'var(--ink)':'';b.style.color=on?'var(--paper)':''});
-  $('#warm-note').hidden=warmChoice==null}
-paintWarm();
+const W0=D.warmup;$('#warm-pt').innerHTML=W0.pt;$('#end-pt').innerHTML=W0.ptPlain||W0.pt.replace(/<[^>]+>/g,'');
+let warmChoice=store.get('warm');const warm=$('#warm');
+W0.options.forEach((o,i)=>{const b=el('button','opt',esc(o.t));b.type='button';b.onclick=()=>{warmChoice=String(i);store.set('warm',warmChoice);paintWarm();renderEnd()};warm.append(b)});
+function paintWarm(){[...warm.children].forEach((b,i)=>{const on=warmChoice===String(i);b.setAttribute('aria-pressed',String(on));b.style.background=on?'var(--ink)':'';b.style.color=on?'var(--paper)':''});$('#warm-note').hidden=warmChoice==null}
+function renderEnd(){const e=$('#end-text');if(warmChoice==null||!W0.options[+warmChoice]){e.textContent='Answer the first question at the top of the page, then come back here.';return}
+  e.innerHTML=W0.options[+warmChoice].msg+' '+(W0.close||'')}
+paintWarm();renderEnd();
 
 /* ---------- concordance ---------- */
-const lines=[
- {l:"I'm busy now. I'll",k:'deal',r:'with the emails tomorrow.',w:'deal'},
- {l:"Who's going to",k:'deal',r:'with the broken window?',w:'deal'},
- {l:'We need to',k:'deal',r:'with this problem before Monday.',w:'deal'},
- {l:'How do you',k:'deal',r:'with stress before an exam?',w:'deal'},
- {l:'After his dog died, he had to',k:'deal',r:'with a lot of sadness.',w:'deal'},
- {l:"I can't",k:'deal',r:"with my neighbor. He's so rude!",w:'deal'},
- {l:'Nurses',k:'deal',r:'with sick and scared people every day.',w:'deal'},
- {l:'The movie',k:'deals',r:'with family and friendship.',w:'deal'},
- {l:"OK, it's a",k:'deal',r:'. I cook, you wash the dishes.',w:'deal'},
- {l:"Relax, it's no big",k:'deal',r:'.',w:'deal'},
- {l:"Don't worry about the project. I can",k:'handle',r:'it.',w:'handle'},
- {l:"Five meetings in one day? That's too much to",k:'handle',r:'.',w:'handle'},
- {l:"He couldn't",k:'handle',r:'the pressure, so he quit.',w:'handle'},
- {l:'She',k:'handled',r:'the angry customer really well.',w:'handle'},
- {l:'The government',k:'handled',r:'the crisis badly.',w:'handle'},
- {l:'In our family, my mom',k:'handles',r:'the money.',w:'handle'},
- {l:'Our team',k:'handles',r:'all the online orders.',w:'handle'},
- {l:'Please',k:'handle',r:'the glasses with care.',w:'handle'},
- {l:'Wash your hands before you',k:'handle',r:'food.',w:'handle'},
- {l:"I'm not sure how to",k:'handle',r:'my new boss.',w:'handle'}
-];
-lines.forEach((x,i)=>x.i=i);
-let filt='deal',sortBy='orig';
+const C=D.concordance;const lines=C.lines.map((x,i)=>Object.assign({i},x));
+let filt=C.keys[0].id,sortBy='orig';
+const fh=$('#filters');
+C.keys.concat([{id:'all',label:C.allLabel||'both'}]).forEach((k,i)=>{const b=el('button','tb',esc(k.label));b.type='button';b.dataset.f=k.id;b.setAttribute('aria-pressed',String(i===0));
+  b.onclick=()=>{filt=k.id;fh.querySelectorAll('.tb').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderConc()};fh.append(b)});
 const first=s=>(s.trim().split(/\s+/)[0]||'').toLowerCase().replace(/[^a-z']/g,'');
 const last=s=>(s.trim().split(/\s+/).pop()||'').toLowerCase().replace(/[^a-z']/g,'');
-function renderConc(){
-  let L=lines.filter(x=>filt==='all'||x.w===filt);
+function renderConc(){let L=lines.filter(x=>filt==='all'||x.w===filt);
   if(sortBy==='next')L=[...L].sort((a,b)=>first(a.r).localeCompare(first(b.r))||a.i-b.i);
   if(sortBy==='prev')L=[...L].sort((a,b)=>last(a.l).localeCompare(last(b.l))||a.i-b.i);
   const c=$('#conc');c.innerHTML='';
-  L.forEach(x=>{const row=el('div','row');
-    const parts=x.r.split(/(\s+)/);const nx=parts.shift();
-    row.append(el('div','l','<span>'+esc(x.l)+'</span>'),el('div','k','<mark>'+esc(x.k)+'</mark>'),el('div','r','<span class="nx">'+esc(nx)+'</span>'+esc(parts.join(''))));
-    c.append(row)});
-}
-document.querySelectorAll('.tb[data-f]').forEach(b=>b.onclick=()=>{filt=b.dataset.f;document.querySelectorAll('.tb[data-f]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderConc()});
+  L.forEach(x=>{const row=el('div','row');const parts=x.r.split(/(\s+)/);const nx=parts.shift();
+    row.append(el('div','l','<span>'+esc(x.l)+'</span>'),el('div','k','<mark>'+esc(x.k)+'</mark>'),el('div','r','<span class="nx">'+esc(nx)+'</span>'+esc(parts.join(''))));c.append(row)})}
 document.querySelectorAll('.tb[data-s]').forEach(b=>b.onclick=()=>{sortBy=b.dataset.s;document.querySelectorAll('.tb[data-s]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderConc()});
 renderConc();
 
-/* ---------- multiple-choice helper ---------- */
-function mcq(host,q,opts,fbOk,fbNo){
-  const box=el('div','q');box.append(el('p','qt',q));
-  const row=el('div','opts');const fb=el('p','fb');fb.hidden=true;
-  opts.forEach(o=>{const b=el('button','opt',o.t);b.type='button';b.onclick=()=>{
-    if(o.ok){b.classList.add('right');[...row.children].forEach(x=>x.disabled=true);fb.className='fb';fb.innerHTML=fbOk}
-    else{b.classList.add('wrong');b.disabled=true;fb.className='fb no';fb.innerHTML=o.why||fbNo}
-    fb.hidden=false};row.append(b)});
-  box.append(row,fb);host.append(box);
-}
-const nq=$('#noticeqs');
-mcq(nq,'1. Show “deal”. When deal is a verb, what word comes right after it?',[{t:'with',ok:true},{t:'the thing directly (deal the problem)'},{t:'about'}],'Yes! The verb is always <b>deal with</b> + something.','Look again. Sort by “next word” to help you.');
-mcq(nq,'2. Show “handle”. What comes after handle?',[{t:'with + the thing'},{t:'the thing directly: it, the pressure, the money',ok:true}],'Right! <b>handle + it / the pressure</b>. No “with”. (In “handle the glasses with care”, <i>with</i> goes with <i>care</i>.)','Look again. Do you see “handle with the problem”?');
-mcq(nq,'3. Show “deal”. Look at the words after “deal with”: the emails, the broken window, stress, sadness, my neighbor. These are…',[{t:'things you like'},{t:'things you touch'},{t:'tasks, problems, feelings and people you need to face',ok:true}],'Exactly. We <b>deal with</b> things that need our attention, and often they are difficult or unpleasant.','Not quite. Are emails, sadness and a rude neighbor nice things?');
-mcq(nq,'4. Show “handle”. Look at the words around it: can, couldn\'t, too much, well, badly. What do they tell us?',[{t:'handle is about capacity: can you manage it? how well?',ok:true},{t:'handle is about feelings'},{t:'handle is about the future'}],'Yes! <b>handle</b> often talks about <b>capacity</b> and <b>performance</b>: I can handle it, she handled it well.','Look at can / couldn\'t / too much / well / badly again. What do these words measure?');
-mcq(nq,'5. Show “deal”. Find “it\'s a deal” and “no big deal”. Here, deal is…',[{t:'a verb'},{t:'a noun: an agreement, or something important',ok:true}],'Right. <b>It\'s a deal!</b> = combinado. <b>No big deal</b> = nada demais.','There is no “with” here, and there is “a” before deal. What does that tell you?');
+/* ---------- multiple choice ---------- */
+function mcq(host,q){const box=el('div','q');box.append(el('p','qt',q.q));const row=el('div','opts');const fb=el('p','fb');fb.hidden=true;
+  q.opts.forEach(o=>{const b=el('button','opt',o.t);b.type='button';b.onclick=()=>{
+    if(o.ok){b.classList.add('right');[...row.children].forEach(x=>x.disabled=true);fb.className='fb';fb.innerHTML=q.ok}
+    else{b.classList.add('wrong');b.disabled=true;fb.className='fb no';fb.innerHTML=o.why||q.no}fb.hidden=false};row.append(b)});
+  box.append(row,fb);host.append(box)}
+D.notice.forEach((q,i)=>mcq($('#noticeqs'),Object.assign({},q,{q:(i+1)+'. '+q.q})));
 
-/* ---------- classify by context ---------- */
-const cls=[
- {s:"I'll <mark>deal with</mark> the emails tomorrow.",a:'task'},
- {s:'How do you <mark>deal with</mark> stress before an exam?',a:'feel'},
- {s:"Don't worry about the project. I can <mark>handle</mark> it.",a:'cap'},
- {s:'In our family, my mom <mark>handles</mark> the money.',a:'hand'},
- {s:"I can't <mark>deal with</mark> my neighbor. He's so rude!",a:'feel'},
- {s:"Who's going to <mark>deal with</mark> the broken window?",a:'task'},
- {s:'She <mark>handled</mark> the angry customer really well.',a:'cap'},
- {s:'Wash your hands before you <mark>handle</mark> food.',a:'hand'},
- {s:"He couldn't <mark>handle</mark> the pressure, so he quit.",a:'cap'},
- {s:'Nurses <mark>deal with</mark> sick and scared people every day.',a:'feel'}
-];
-const groups=[{id:'task',t:'Task / problem',c:'c-can'},{id:'feel',t:'Feelings / people',c:'c-know'},{id:'cap',t:'Capacity',c:'c-how'},{id:'hand',t:'In charge / hands',c:'c-d'}];
+/* ---------- classify ---------- */
+const K=D.classify;$('#cl-kicker').textContent=K.kicker||'Sort the lines';$('#cl-title').textContent=K.title;$('#cl-task').innerHTML=K.task;
+K.groups.forEach(g=>$('#legend').append(el('div',COLOR[g.color],'<b>'+esc(g.title)+'</b>'+g.desc)));
 let clDone=0;const cards=$('#cards');
-cls.forEach(x=>{const c=el('div','card');c.append(el('p','s',x.s));const r=el('div','opts');
-  groups.forEach(g=>{const b=el('button','chip',g.t);b.type='button';b.onclick=()=>{
-    if(g.id===x.a){b.classList.add('right',g.c);[...r.children].forEach(y=>y.disabled=true);c.classList.add('done');clDone++;clScore()}
-    else{b.classList.add('wrong');b.disabled=true}};r.append(b)});
-  c.append(r);cards.append(c)});
-function clScore(){$('#cl-score').innerHTML='Sorted: <b>'+clDone+' / '+cls.length+'</b>'}
+K.items.forEach(x=>{const c=el('div','card');c.append(el('p','s',x.s));const r=el('div','opts');
+  K.groups.forEach(g=>{const b=el('button','chip',esc(g.chip||g.title));b.type='button';b.onclick=()=>{
+    if(g.id===x.a){b.classList.add('right',COLOR[g.color]);[...r.children].forEach(y=>y.disabled=true);c.classList.add('done');clDone++;clScore()}
+    else{b.classList.add('wrong');b.disabled=true}};r.append(b)});c.append(r);cards.append(c)});
+function clScore(){$('#cl-score').innerHTML='Sorted: <b>'+clDone+' / '+K.items.length+'</b>'}
 clScore();
-mcq($('#cl-after'),'Now look at your four groups. Which verb do you see in each one?',[
-  {t:'Task and Feelings → handle · Capacity and In charge → deal with'},
-  {t:'Task and Feelings → deal with · Capacity and In charge → handle',ok:true},
-  {t:'All four groups use both verbs'}],
-  'Yes! The <b>context</b> helps you choose: tasks, feelings and difficult people → <b>deal with</b>. Capacity, being in charge, hands → <b>handle</b>.',
-  'Look at the underlined words in each group again.');
+if(K.after){$('#cl-after').hidden=false;mcq($('#cl-after'),K.after)}
 
 /* ---------- rule ---------- */
-const rules=[
- {pre:'After the verb deal, we need',opts:['with','nothing'],a:'with',post:'(deal with stress).'},
- {pre:'After handle, we need',opts:['nothing','with'],a:'nothing',post:'(handle the pressure).'},
- {pre:'For a task, a problem, a feeling or a difficult person, we usually use',opts:['deal with','handle'],a:'deal with',post:'.'},
- {pre:'For capacity (I can / can\'t, too much) or how well someone did something, we usually use',opts:['handle','deal with'],a:'handle',post:'.'},
- {pre:'For your job or role, or for touching something with your hands, we use',opts:['handle','deal with'],a:'handle',post:'.'}
-];
-const rb=$('#rulebox');const sels=[];
-rules.forEach((r,i)=>{const line=el('div','line');line.append(el('span','',esc(r.pre)));
+const R=D.rule;const rb=$('#rulebox');const sels=[];
+R.lines.forEach((r,i)=>{const line=el('div','line');line.append(el('span','',r.pre));
   const s=document.createElement('select');s.id='rule-'+i;s.setAttribute('aria-label','Rule '+(i+1));
   s.append(new Option('choose…',''));r.opts.forEach(o=>s.append(new Option(o,o)));
-  s.onchange=()=>{s.classList.remove('right','wrong')};sels.push(s);line.append(s,el('span','',esc(r.post)));rb.append(line)});
+  s.onchange=()=>s.classList.remove('right','wrong');sels.push(s);line.append(s,el('span','',r.post||''));rb.append(line)});
 const ra=el('div','row-actions');const rbtn=el('button','btn','Check my rule');rbtn.type='button';const rfb=el('p','fb');rfb.hidden=true;
-rbtn.onclick=()=>{let ok=0;sels.forEach((s,i)=>{s.classList.remove('right','wrong');if(!s.value)return;if(s.value===rules[i].a){s.classList.add('right');ok++}else s.classList.add('wrong')});
-  rfb.hidden=false;if(ok===rules.length){rfb.className='fb';rfb.textContent='Perfect! This is your rule. Here it is in a table.';$('#formula').hidden=false}
-  else{rfb.className='fb no';rfb.textContent=ok+' of '+rules.length+' correct. Look at Steps 1 and 2 again and try the red ones.'}};
+rbtn.onclick=()=>{let ok=0;sels.forEach((s,i)=>{s.classList.remove('right','wrong');if(!s.value)return;if(s.value===R.lines[i].a){s.classList.add('right');ok++}else s.classList.add('wrong')});
+  rfb.hidden=false;if(ok===R.lines.length){rfb.className='fb';rfb.textContent='Perfect! This is your rule. Here it is in a table.';$('#formula').hidden=false}
+  else{rfb.className='fb no';rfb.textContent=ok+' of '+R.lines.length+' correct. Look at Steps 1 and 2 again and try the red ones.'}};
 ra.append(rbtn);rb.append(ra,rfb);
+R.boxes.forEach(b=>$('#formula-boxes').append(el('div',COLOR[b.color],'<div class="f">'+esc(b.f)+'</div><div class="ex">'+b.ex+'</div><div class="pt">'+b.pt+'</div>')));
+if(R.both){$('#both').hidden=false;$('#both').innerHTML=R.both}
+if(R.never){$('#never').hidden=false;$('#never').innerHTML=R.never}
+if(R.hint){$('#rule-hint').hidden=false;$('#rule-hint').innerHTML=R.hint}
 
 /* ---------- situations ---------- */
-const sits=[
- {c:'Your boss gives you a big project. You feel confident.',s:"“Don't worry, I can ___ it.”",o:['handle','deal with'],a:0,why:'Capacity + confidence → <b>I can handle it</b>.'},
- {c:'You have 40 unread emails, but you are having lunch.',s:'“I\'ll ___ them after lunch.”',o:['handle','deal with'],a:1,why:'A task you will do something about later → <b>deal with</b>.'},
- {c:'Your friend\'s grandmother died last week.',s:'“She\'s ___ a lot of sadness right now.”',o:['dealing with','handling'],a:0,why:'Difficult feelings → <b>deal with</b>.'},
- {c:'A waiter talks about his job at a restaurant.',s:'“At the end of the night, I ___ the money.”',o:['handle','deal with'],a:0,why:'His role, he is in charge of it → <b>handle</b>.'},
- {c:'A manager talks to an employee after a difficult meeting.',s:'“You ___ that angry client really well!”',o:['handled','dealt'],a:0,why:'How well someone did it → <b>handled … well</b>. (“dealt” is wrong here: it needs “with”.)'},
- {c:'Your roommate never cleans and plays loud music at 3 a.m.',s:'“I can\'t ___ him anymore!”',o:['handle','deal with'],a:1,why:'A difficult person you have to put up with → <b>I can\'t deal with him</b>.'},
- {c:'A sign on a box in the post office.',s:'“Fragile! ___ with care.”',o:['Handle','Deal'],a:0,why:'Touching something with your hands → <b>Handle with care</b>.'},
- {c:'Your new job has long hours and a lot of pressure. You are tired.',s:'“It\'s too much to ___.”',o:['handle','deal'],a:0,why:'Capacity → <b>too much to handle</b>. (“too much to deal with” is OK too, but never “too much to deal”.)'}
-];
-let sitDone=0,sitRight=0;const sh=$('#sits');
-sits.forEach(x=>{const c=el('div','sit');c.append(el('p','ctx',esc(x.c)),el('p','s',esc(x.s)));const r=el('div','opts');const fb=el('p','fb');fb.hidden=true;
+const S=D.situations||[];
+if(!S.length)$('#sit-block').hidden=true;
+let sitDone=0,sitRight=0;
+S.forEach(x=>{const c=el('div','sit');c.append(el('p','ctx',esc(x.c)),el('p','s',esc(x.s)));const r=el('div','opts');const fb=el('p','fb');fb.hidden=true;
   x.o.forEach((o,i)=>{const b=el('button','opt',esc(o));b.type='button';b.onclick=()=>{const good=i===x.a;b.classList.add(good?'right':'wrong');
     [...r.children].forEach(y=>y.disabled=true);if(!good)r.children[x.a].classList.add('right');sitDone++;if(good)sitRight++;sitScore();
     fb.className=good?'fb':'fb no';fb.innerHTML=(good?'Yes! ':'Not this time. ')+x.why;fb.hidden=false};r.append(b)});
-  c.append(r,fb);sh.append(c)});
-function sitScore(){$('#sit-score').innerHTML='Answered: <b>'+sitDone+' / '+sits.length+'</b> · Right: <b>'+sitRight+'</b>'}
+  c.append(r,fb);$('#sits').append(c)});
+function sitScore(){$('#sit-score').innerHTML='Answered: <b>'+sitDone+' / '+S.length+'</b> · Right: <b>'+sitRight+'</b>'}
 sitScore();
 
-/* ---------- dialogues ---------- */
-const texts=[
- {h:'The new job',ctx:'Rafa started a job in a busy shop. His friend Jen calls him.',W:['deal','deal with','handle','handles','handled'],turns:[
-  ['Jen',"How's the new job? Is it too much to [[handle]]?"],
-  ['Rafa','No, I can [[handle]] it. But every day I have to [[deal with]] angry customers.'],
-  ['Jen','That sounds hard. Who [[handles]] the money in the shop?'],
-  ['Rafa','My manager. Yesterday a customer shouted at me, and I [[handled]] it really well!'],
-  ['Jen',"Nice! If there's a big problem, call me. I'll help you [[deal with]] it."],
-  ['Rafa',"Thanks! It's a [[deal]]."]]},
- {h:'Exam week',ctx:'Leo and Mia are students. They have exams next week.',W:['deal','deal with','handle','handles','handled'],turns:[
-  ['Leo',"Three exams next week. I can't [[handle]] all this pressure!"],
-  ['Mia',"Relax, it's no big [[deal]]. How do you usually [[deal with]] stress?"],
-  ['Leo','I play video games… for six hours.'],
-  ['Mia',"Ha! That's not a good way to [[deal with/handle]] it. Let's make a study plan."],
-  ['Leo','OK. You help me study, I buy the pizza. [[Deal]]?']]},
- {h:'My first year in Canada',ctx:'Ana writes a blog post about moving to another country.',W:['deal with','dealt with','handle','handled'],prose:"Moving to Canada was hard. In the first month, I had to [[deal with]] a lot of loneliness. My English was OK, so I could [[handle]] simple conversations, but phone calls were too much to [[handle]]. I also had to [[deal with]] a difficult landlord who never answered my messages. Now, after one year, I think I [[handled/dealt with]] the change pretty well!"}
-];
-const dlgHost=$('#dialogues');let gapId=0;
+/* ---------- dialogues / texts ---------- */
+$('#texts-title').textContent=D.textsTitle||'Dialogues and a text';
+let gapId=0;
 function fill(str,gaps,W){return str.replace(/\[\[([^\]]+)\]\]/g,(m,a)=>{const id='gap-'+(gapId++);gaps.push({id,a:a.toLowerCase().split('/')});
-  return '<select class="gap" id="'+id+'" aria-label="gap"><option value="">_____</option>'+W.map(w=>'<option>'+w+'</option>').join('')+'</select>'})}
-texts.forEach(t=>{const box=el('div','panel dlg');box.append(el('h3','',t.h),el('p','ctx',t.ctx));const gaps=[];
-  if(t.turns){t.turns.forEach(([w,s])=>{const tr=el('div','turn');tr.append(el('span','who',w),el('span','',fill(esc(s),gaps,t.W)));box.append(tr)})}
+  return '<select class="gap" id="'+id+'" aria-label="gap"><option value="">_____</option>'+W.map(w=>'<option>'+esc(w)+'</option>').join('')+'</select>'})}
+D.texts.forEach(t=>{const box=el('div','panel dlg');box.append(el('h3','',esc(t.h)),el('p','ctx',esc(t.ctx)));const gaps=[];
+  if(t.turns)t.turns.forEach(([w,s])=>{const tr=el('div','turn');tr.append(el('span','who',esc(w)),el('span','',fill(esc(s),gaps,t.W)));box.append(tr)});
   else box.append(el('p','prose',fill(esc(t.prose),gaps,t.W)));
   const ra=el('div','row-actions');const b=el('button','btn','Check');b.type='button';const rs=el('button','btn ghost','Try again');rs.type='button';const fb=el('p','fb');fb.hidden=true;
   b.onclick=()=>{let ok=0;gaps.forEach(g=>{const s=document.getElementById(g.id);s.classList.remove('right','wrong');if(g.a.includes(s.value.toLowerCase())){s.classList.add('right');ok++}else if(s.value)s.classList.add('wrong')});
-    fb.hidden=false;fb.className=ok===gaps.length?'fb':'fb no';fb.textContent=ok===gaps.length?'All correct! '+gaps.length+' / '+gaps.length:ok+' / '+gaps.length+' correct. Tip: is there a “with” after the gap? Is it about a task, feelings, capacity or being in charge?'};
+    fb.hidden=false;fb.className=ok===gaps.length?'fb':'fb no';fb.textContent=ok===gaps.length?'All correct! '+gaps.length+' / '+gaps.length:ok+' / '+gaps.length+' correct. '+(D.textsTip||'Look at the words around the gap and the context.')};
   rs.onclick=()=>{gaps.forEach(g=>{const s=document.getElementById(g.id);s.value='';s.classList.remove('right','wrong')});fb.hidden=true};
-  ra.append(b,rs);box.append(ra,fb);dlgHost.append(box)});
+  ra.append(b,rs);box.append(ra,fb);$('#dialogues').append(box)});
 
 /* ---------- errors ---------- */
-const errs=[
- {s:'I need to handle with this problem.',ok:false,fix:'I need to <b>handle</b> this problem. / I need to <b>deal with</b> this problem.',why:'handle never takes “with” before the thing.'},
- {s:'How do you deal with stress?',ok:true,why:'Feelings → deal with. Correct!'},
- {s:"I can't deal this situation.",ok:false,fix:"I can't <b>deal with</b> this situation. / I can't <b>handle</b> this situation.",why:'The verb deal needs “with”.'},
- {s:"Don't worry, I can handle it.",ok:true,why:'Capacity → handle. Correct!'},
- {s:'She handles with the money in our company.',ok:false,fix:'She <b>handles</b> the money in our company.',why:'In charge → handle + the thing, no “with”.'},
- {s:'The movie deals about friendship.',ok:false,fix:'The movie <b>deals with</b> friendship.',why:'For the topic of a book or movie, we say deal with.'},
- {s:'Wash your hands before you deal with food.',ok:false,fix:'Wash your hands before you <b>handle</b> food.',why:'Touching with your hands → handle.'},
- {s:'Be careful! Handle the box with care.',ok:true,why:'Here “with” goes with “care” (= carefully). Correct!'},
- {s:"It's too much to deal.",ok:false,fix:"It's too much to <b>handle</b>. / It's too much to <b>deal with</b>.",why:'deal alone does not work here. Use handle, or deal with.'}
-];
-let erDone=0,erRight=0;const el2=$('#errlist');
-errs.forEach(x=>{const c=el('div','err');c.append(el('p','s',esc(x.s)));const r=el('div','opts');const fb=el('p','fb');fb.hidden=true;
+let erDone=0,erRight=0;
+D.errors.forEach(x=>{const c=el('div','err');c.append(el('p','s',esc(x.s)));const r=el('div','opts');const fb=el('p','fb');fb.hidden=true;
   [['Correct',true],['Wrong',false]].forEach(([t,v])=>{const b=el('button','opt',t);b.type='button';b.onclick=()=>{
     const good=v===x.ok;b.classList.add(good?'right':'wrong');[...r.children].forEach(y=>y.disabled=true);erDone++;if(good)erRight++;erScore();
     fb.className=good?'fb':'fb no';fb.innerHTML=(good?'Yes. ':'Not this time. ')+(x.fix?'Better: '+x.fix+' ':'')+x.why;fb.hidden=false};r.append(b)});
-  c.append(r,fb);el2.append(c)});
-function erScore(){$('#er-score').innerHTML='Answered: <b>'+erDone+' / '+errs.length+'</b> · Right: <b>'+erRight+'</b>'}
+  c.append(r,fb);$('#errlist').append(c)});
+function erScore(){$('#er-score').innerHTML='Answered: <b>'+erDone+' / '+D.errors.length+'</b> · Right: <b>'+erRight+'</b>'}
 erScore();
 
-/* ---------- skell notes ---------- */
-['sk-verbs','sk-me'].forEach(id=>{const t=document.getElementById(id);const v=store.get(id);if(v)t.value=v;t.addEventListener('input',()=>store.set(id,t.value))});
-
-/* ---------- end ---------- */
-function renderEnd(){const e=$('#end-text');if(warmChoice==null){e.textContent='Answer the first question at the top of the page, then come back here.';return}
-  const msg=["You chose “I don't know handle with it.” Now you know why it is wrong: handle never takes “with”, and “não sei” here means <b>can't</b>. Say “I can't deal with it” or “I can't handle it.”",
-    "You chose “I can't deal with it.” Correct! Use it when the problem is about feelings or a difficult person: “My ex keeps calling me. I can't deal with it.”",
-    "You chose “I can't handle it.” Correct! Use it when it is about capacity, when something is too much for you: “Three jobs? I can't handle it.”"];
-  e.innerHTML=msg[+warmChoice]+' Both B and C are correct. The context decides. <b>Now tell a partner one thing you can handle easily and one thing that is hard for you to deal with.</b>'}
-renderEnd();
-})();
+/* ---------- SkELL ---------- */
+D.skell.steps.forEach(s=>$('#sk-steps').append(el('li','',s)));
+$('#sk-notes').placeholder=D.skell.notesPlaceholder||'';$('#sk-me').placeholder=D.skell.mePlaceholder||'';
+['sk-notes','sk-me'].forEach(id=>{const t=document.getElementById(id);const v=store.get(id);if(v)t.value=v;t.addEventListener('input',()=>store.set(id,t.value))});
+})(DATA);
 </script>
+
 </body>
 </html>
