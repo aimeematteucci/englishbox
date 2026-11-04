@@ -11,6 +11,12 @@
 *.ogg
 *.flac
 
+# Vídeos
+*.mov
+*.MOV
+*.mp4
+*.MP4
+
 # Python
 __pycache__/
 *.pyc
