@@ -126,7 +126,7 @@ What are you gonna do? **[PAUSA 3s]**
 
 > **Lucas's vacation plans**
 >
-> I'm so excited — my vacation starts in two weeks! First, I'm going to sleep a lot. Seriously, I'm not going to set an alarm for ten days.
+> I'm so excited — in two weeks, I'm going to be on vacation! First, I'm going to sleep a lot. Seriously, I'm not going to set an alarm for ten days.
 >
 > For Christmas, I'm going to visit my family in Minas Gerais. My mom is going to cook her famous chicken stroganoff, and my brother and I are going to make the dessert.
 >
@@ -141,12 +141,12 @@ What are you gonna do? **[PAUSA 3s]**
 ---
 
 **Trecho 1**
-"I'm so excited — my vacation starts in two weeks! First, I'm going to sleep a lot."
+"I'm so excited — in two weeks, I'm going to be on vacation! First, I'm going to sleep a lot."
 
-🇧🇷 *Excited* = animado, empolgado. Cuidado: não é "excitado"! *In two weeks* = daqui a duas semanas. E o primeiro plano dele: *I'm going to sleep a lot* = vou dormir muito.
+🇧🇷 *Excited* = animado, empolgado. Cuidado: não é "excitado"! *In two weeks* = daqui a duas semanas. *I'm going to be on vacation* = vou estar de férias. E o primeiro plano dele: *I'm going to sleep a lot* = vou dormir muito.
 
 Repeat: I'm so excited! **[PAUSA 3s]**
-My vacation starts in two weeks. **[PAUSA 4s]**
+In two weeks, I'm going to be on vacation. **[PAUSA 5s]**
 I'm going to sleep a lot. **[PAUSA 3s]**
 
 ---
@@ -285,9 +285,9 @@ Me? Well, I'm going to take a break in December. I'm going to read some books, a
 
 🇧🇷 Agora você é o **Lucas**. Eu sou a amiga dele. Responda usando as informações do texto. Se precisar, volte e escute o texto de novo.
 
-Hey Lucas! Your vacation starts soon, right?
+Hey Lucas! You're going to be on vacation soon, right?
 **[BIP] [PAUSA 5s]**
-*Lucas:* Yes, in two weeks! I'm so excited!
+*Lucas:* Yes, I am! In two weeks! I'm so excited!
 
 So, what are you going to do?
 **[BIP] [PAUSA 8s]**
