@@ -516,3 +516,31 @@ Obrigada por cada comentário, cada salvamento e cada áudio no direct. Se você
 Perdeu algum dia? Estão todos no meu perfil 👆
 
 > ✏️ **Ajuste antes de postar:** preencha o slide 4 com o que você está oferecendo (comunidade, aula experimental, lista de espera...) e confirme se o CTA será "link na bio" ou palavra-chave no comentário.
+
+---
+
+## Post bônus — Happen upon: o livro vs. o nativo
+
+> 📌 **Onde encaixar:** combina com o formato **Livro vs. nativo** (quinta-feira). Pode entrar como post extra ou substituir um dos dias acima.
+
+**Capa:** "I happened upon an old friend." Tá certo... mas quem fala assim? 📖
+
+**Slides**
+1. **Happen upon** (ou **happen on**) = encontrar algo ou alguém **por acaso**, sem planejar.
+   *I **happened upon** a little bookstore in Lisbon.* → Encontrei por acaso uma livrariazinha em Lisboa.
+2. É correto, mas soa um pouco **literário**. Você vai ver mais em livros e textos do que numa conversa.
+3. Na fala do dia a dia, o nativo prefere:
+   - **come across** → *I **came across** this video yesterday.* (algo)
+   - **stumble upon / stumble across** → *I **stumbled upon** this café.* (algo, lugar)
+   - **run into / bump into** → *I **ran into** my ex at the mall.* 😬 (pessoa)
+4. Resumo:
+   📖 Livro: **happen upon**
+   🗣️ Conversa: **come across** (coisas) · **run into** (pessoas)
+5. Bônus que o nativo usa MUITO: **happen to** = "por acaso"
+   *Do you **happen to** know where the station is?* → Por acaso você sabe onde fica a estação?
+
+**CTA:** Comenta: quem foi a última pessoa que você "ran into" por acaso? 👇
+
+**Legenda:**
+Nem tudo que está certo soa natural. *Happen upon* é ótimo para entender livros. Para conversar, fique com *come across* e *run into*. 😉
+Perdeu os anteriores? Estão no meu perfil 👆
